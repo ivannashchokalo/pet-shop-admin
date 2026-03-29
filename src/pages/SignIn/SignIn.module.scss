@@ -1,0 +1,19 @@
+@use "../../styles/" as *;
+
+.signInContainer {
+  @include flex-column(20px);
+  align-items: center;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logoIcon {
+  fill: #000;
+}
+
+.title {
+  @include fonts($fs: 32px, $fw: 600);
+}

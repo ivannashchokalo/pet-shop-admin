@@ -38,18 +38,21 @@
   padding: 11px 10px;
   width: 302px;
   outline: none;
-}
+  @include fonts(14px);
 
-.input::placeholder {
-  @include fonts($fs: 12px, $color: #c0c0c0);
+  &:focus {
+    border: 1px solid #a2a2a2;
+  }
+
+  &::placeholder {
+    @include fonts($fs: 12px, $color: #c0c0c0);
+  }
 }
 
 .errorText {
   height: 1px;
   font-weight: 400;
   font-size: 10px;
-
-  /* line-height: 18px; */
   line-height: 1.8;
   letter-spacing: 0em;
   color: #e24a4a;
@@ -95,6 +98,7 @@
 }
 
 .description {
+  @include fonts(14px);
   resize: none;
   height: 96px;
   border: 1px solid #c0c0c0;
@@ -102,6 +106,10 @@
   padding: 8px 10px;
   background-color: rgba(192, 192, 192, 0.1);
   outline: none;
+
+  &:focus {
+    border: 1px solid #a2a2a2;
+  }
 }
 
 .description::placeholder {

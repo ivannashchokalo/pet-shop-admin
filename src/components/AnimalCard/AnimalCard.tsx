@@ -24,7 +24,7 @@ export default function AnimalCard({ animal }: AnimalCardProps) {
           <div className={styles.contentWrapper}>
             <h2 className={styles.animalName}>{animal.name}</h2>
             <p className={styles.animalPrice}>
-              ${animal.price && `${animal.price}`}
+              {animal.price && `$${animal.price}`}
             </p>
           </div>
 

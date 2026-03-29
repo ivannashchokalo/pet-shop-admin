@@ -160,14 +160,14 @@ export default function Requests() {
       toast.loading("Updating...");
 
       await Promise.all(
-        selectedRows.map((row) => {
-          if (row.status === "contacted") return Promise.resolve();
-
-          return updateRequest({
-            _id: row._id,
-            status: "contacted",
-          }).unwrap();
-        }),
+        selectedRows
+          .filter((row) => row.status !== "contacted")
+          .map((row) =>
+            updateRequest({
+              _id: row._id,
+              status: "contacted",
+            }).unwrap(),
+          ),
       );
 
       toast.dismiss();

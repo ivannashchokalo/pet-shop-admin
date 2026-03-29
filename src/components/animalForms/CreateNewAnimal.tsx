@@ -1,18 +1,18 @@
 import { Controller, useForm } from "react-hook-form";
-import DropzoneField from "../../components/DropzoneField/DropzoneField";
+import DropzoneField from "../DropzoneField/DropzoneField";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { NumericFormat } from "react-number-format";
 import toast, { Toaster } from "react-hot-toast";
-import Section from "../../components/Section/Section";
-import Container from "../../components/Container/Container";
+import Section from "../Section/Section";
+import Container from "../Container/Container";
 import styles from "./CreateNewAnimal.module.scss";
 import { useLocation } from "react-router";
 import Select from "react-select";
-import { selectStyles } from "../../components/Select/selectStyles";
-import DropdownIndicator from "../../components/Select/DropdownIndicator";
+import { selectStyles } from "../Select/selectStyles";
+import DropdownIndicator from "../Select/DropdownIndicator";
 import type { OptionType } from "../../types/select";
-import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import { useAddAnimalMutation } from "../../services/animalsApi";
 
 interface CreateNewAnimalForm {
