@@ -2,8 +2,6 @@ import { useCheckAuthQuery } from "../../services/authApi";
 
 export default function Home() {
   const { data } = useCheckAuthQuery();
-  console.log(data);
-
   return (
     <div>
       <p>home</p>

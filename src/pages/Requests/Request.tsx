@@ -8,7 +8,7 @@ import {
 } from "ag-grid-community";
 import { AgGridProvider } from "ag-grid-react";
 import { AgGridReact } from "ag-grid-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import styles from "./Request.module.scss";
 import Section from "../../components/Section/Section";
@@ -31,6 +31,13 @@ export default function Requests() {
   const [updateRequest] = useUpdateRequestMutation();
   const [deleteRequest] = useDeleteRequestMutation();
   const [deletedId, setDeletedId] = useState<string | null>(null);
+  const [rowData, setRowData] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      setRowData(data.map((item) => ({ ...item })));
+    }
+  }, [data]);
 
   const colDefs = [
     {
@@ -259,7 +266,7 @@ export default function Requests() {
                 style={{ height: 700 }}
               >
                 <AgGridReact
-                  rowData={data}
+                  rowData={rowData}
                   columnDefs={colDefs}
                   defaultColDef={defaultColDef}
                   onCellValueChanged={handleValueChange}
