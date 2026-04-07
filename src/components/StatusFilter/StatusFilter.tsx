@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router";
-import Select, { type SingleValue } from "react-select";
+import Select from "react-select";
 import type { OptionType } from "../../types/select";
 import { selectStyles } from "../Select/selectStyles";
 import DropdownIndicator from "../Select/DropdownIndicator";

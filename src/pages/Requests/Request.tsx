@@ -33,7 +33,7 @@ export default function Requests() {
   const [updateRequest] = useUpdateRequestMutation();
   const [deleteRequest] = useDeleteRequestMutation();
   const [deletedId, setDeletedId] = useState<string | null>(null);
-  const [rowData, setRowData] = useState([]);
+  const [rowData, setRowData] = useState<Request[]>([]);
 
   useEffect(() => {
     if (data) {

@@ -91,7 +91,8 @@ export default function AnimalDetailes() {
             <Select
               options={options}
               value={options.find((option) => option.value === data?.status)}
-              onChange={(option: OptionType) => {
+              onChange={(option) => {
+                if (!option) return;
                 handleUpdateStatus(option.value);
               }}
               isSearchable={false}

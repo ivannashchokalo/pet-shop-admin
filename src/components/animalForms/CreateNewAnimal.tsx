@@ -52,11 +52,11 @@ export default function CreateNewAnimal() {
     animalData.append("sex", data.sex);
 
     if (data.birthDate) {
-      animalData.append("birthDate", data.birthDate);
+      animalData.append("birthDate", data.birthDate.toISOString());
     }
 
     if (data.price) {
-      animalData.append("price", data.price);
+      animalData.append("price", String(data.price));
     }
 
     if (data.description) {

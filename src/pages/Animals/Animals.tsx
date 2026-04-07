@@ -60,9 +60,9 @@ export default function Animals() {
             <AnimalsList animals={data.animals} />
           )}
         </div>
-        {data?.totalPages > 1 && (
+        {(data?.totalPages ?? 0) > 1 && (
           <ReactPaginate
-            pageCount={data?.totalPages}
+            pageCount={data?.totalPages ?? 0}
             onPageChange={handlePageChange}
             forcePage={page - 1}
             pageRangeDisplayed={5}

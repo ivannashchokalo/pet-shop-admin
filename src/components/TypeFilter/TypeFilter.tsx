@@ -31,7 +31,9 @@ export default function TypeFilter() {
     <Select
       options={options}
       value={options.find((option) => option.value === type)}
-      onChange={(option: OptionType) => handleTypeChange(option.value)}
+      onChange={(option) => {
+        if (option) handleTypeChange(option.value);
+      }}
       placeholder="Type"
       isSearchable={false}
       styles={selectStyles}
