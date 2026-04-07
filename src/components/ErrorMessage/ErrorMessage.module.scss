@@ -1,0 +1,10 @@
+@use "../../styles/" as *;
+
+.error {
+  @include fonts($color: #842029);
+  text-align: center;
+  padding: 12px 16px;
+  border: 1px solid #f5c2c7;
+  border-radius: 8px;
+  background-color: #f8d7da;
+}

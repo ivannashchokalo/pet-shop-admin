@@ -1,0 +1,18 @@
+@use "../../styles/" as *;
+
+.list {
+  margin-bottom: 50px;
+}
+
+.listItem {
+  @include fonts(12px, 600);
+  display: flex;
+  gap: 8px;
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  &:first-child {
+    @include fonts(18px, 600);
+  }
+}

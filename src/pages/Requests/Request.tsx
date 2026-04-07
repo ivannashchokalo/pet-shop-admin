@@ -22,6 +22,8 @@ import {
 } from "../../services/requestsApi";
 import Icon from "../../components/Icon/Icon";
 import clsx from "clsx";
+import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 export default function Requests() {
   const modules = [AllCommunityModule];
@@ -63,13 +65,13 @@ export default function Requests() {
       filter: true,
       cellStyle: (params: CellClassParams) => {
         if (params.value === "new") {
-          return { color: "blue", fontWeight: "bold" };
+          return { color: "#3b82f6", fontWeight: "bold" };
         }
         if (params.value === "contacted") {
-          return { color: "orange", fontWeight: "bold" };
+          return { color: "#ffc107", fontWeight: "bold" };
         }
         if (params.value === "closed") {
-          return { color: "green", fontWeight: "bold" };
+          return { color: "#64748b", fontWeight: "bold" };
         }
       },
     },
@@ -238,8 +240,8 @@ export default function Requests() {
     <>
       <Section>
         <Container>
-          {isLoading && <p>Loading...</p>}
-          {isError && <p>Error!</p>}
+          {isLoading && <Loader />}
+          {isError && <ErrorMessage />}
           <Toaster />
           {data && (
             <AgGridProvider modules={modules}>

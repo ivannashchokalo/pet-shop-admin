@@ -1,0 +1,22 @@
+@use "../../styles/" as *;
+
+.title {
+  @include fonts(32px, 600);
+  margin-bottom: 48px;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.listItem {
+  @include flex-column(30px);
+  @include border;
+}
+
+.listTitle {
+  @include fonts(24px, 600);
+  text-align: center;
+}

@@ -8,6 +8,8 @@ import Icon from "../../components/Icon/Icon";
 import Container from "../../components/Container/Container";
 import Section from "../../components/Section/Section";
 import { useGetAnimalsQuery } from "../../services/animalsApi";
+import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 export default function Animals() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -27,11 +29,6 @@ export default function Animals() {
     params.set("page", String(selected + 1));
     setSearchParams(params);
   };
-
-  // const { data, isError, isLoading } = useQuery({
-  //   queryKey: ["animals", page, type, status, search],
-  //   queryFn: () => fetchAnimals(page, search, type, status),
-  // });
 
   return (
     <Section>
@@ -56,9 +53,8 @@ export default function Animals() {
         <div className={styles.filter}>
           <FilterPanel />
         </div>
-
-        {isLoading && <strong>Loading...</strong>}
-        {isError && <strong>Something went wrong</strong>}
+        {isLoading && <Loader />}
+        {isError && <ErrorMessage />}
         <div className={styles.animals}>
           {data?.animals && data.animals.length > 0 && (
             <AnimalsList animals={data.animals} />

@@ -6,7 +6,7 @@ import { NumericFormat } from "react-number-format";
 import toast, { Toaster } from "react-hot-toast";
 import Section from "../Section/Section";
 import Container from "../Container/Container";
-import styles from "./CreateNewAnimal.module.scss";
+import styles from "./AnimalForms.module.scss";
 import { useLocation } from "react-router";
 import Select from "react-select";
 import { selectStyles } from "../Select/selectStyles";
@@ -23,7 +23,7 @@ interface CreateNewAnimalForm {
   birthDate: Date;
   price: number;
   description: string;
-  photo: File[];
+  images: File[];
 }
 
 export default function CreateNewAnimal() {
@@ -37,7 +37,7 @@ export default function CreateNewAnimal() {
   } = useForm<CreateNewAnimalForm>({
     defaultValues: {
       type: "dog",
-      photo: [],
+      images: [],
     },
     mode: "onBlur",
   });
@@ -45,8 +45,27 @@ export default function CreateNewAnimal() {
   const [addAnimal, { isLoading }] = useAddAnimalMutation();
 
   const onSubmit = async (data: CreateNewAnimalForm) => {
-    const { photo, ...animalData } = data;
+    const animalData = new FormData();
+    animalData.append("name", data.name);
+    animalData.append("type", data.type);
+    animalData.append("breed", data.breed);
+    animalData.append("sex", data.sex);
 
+    if (data.birthDate) {
+      animalData.append("birthDate", data.birthDate);
+    }
+
+    if (data.price) {
+      animalData.append("price", data.price);
+    }
+
+    if (data.description) {
+      animalData.append("description", data.description);
+    }
+
+    data.images.forEach((file) => {
+      animalData.append("images", file);
+    });
     try {
       toast.loading("Creating...");
       await addAnimal(animalData).unwrap();
@@ -60,7 +79,7 @@ export default function CreateNewAnimal() {
         birthDate: undefined,
         price: 0,
         description: "",
-        photo: [],
+        images: [],
       });
     } catch {
       toast.dismiss();
@@ -239,6 +258,9 @@ export default function CreateNewAnimal() {
                         showYearDropdown
                         scrollableYearDropdown
                         yearDropdownItemNumber={30}
+                        popperPlacement="bottom-start"
+                        portalId="root"
+                        calendarClassName={styles.calendar}
                       />
                     )}
                   />
@@ -293,16 +315,16 @@ export default function CreateNewAnimal() {
                   {errors.description && <p>{errors.description.message}</p>}
                 </div>
                 <div className={styles.dropWrapper}>
-                  <label className={styles.inputLabel} htmlFor="photo">
+                  <label className={styles.inputLabel} htmlFor="images">
                     Images
                   </label>
                   <Controller
-                    name="photo"
+                    name="images"
                     control={control}
                     render={({ field }) => {
                       return (
                         <DropzoneField
-                          id="photo"
+                          id="images"
                           value={field.value}
                           onChange={field.onChange}
                         />

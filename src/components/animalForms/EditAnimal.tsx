@@ -12,7 +12,7 @@ import {
   useGetAnimalByIdQuery,
   useUpdateAnimalMutation,
 } from "../../services/animalsApi";
-import styles from "./CreateNewAnimal.module.scss";
+import styles from "./AnimalForms.module.scss";
 
 interface UpdateAnimalForm {
   name: string;
@@ -22,7 +22,7 @@ interface UpdateAnimalForm {
   birthDate: Date | null;
   price: number;
   description: string;
-  photo: File[];
+  images: File[];
 }
 
 export default function EditAnimal() {
@@ -46,13 +46,48 @@ export default function EditAnimal() {
       birthDate: data?.birthDate ? new Date(data?.birthDate) : null,
       price: data?.price,
       description: data?.description,
-      photo: data?.images,
+      images: data?.images,
       sex: data?.sex,
     },
     mode: "onBlur",
   });
-  const onSubmit = async (formData: UpdateAnimalForm) => {
-    const { photo, ...upData } = formData;
+  const onSubmit = async (data: UpdateAnimalForm) => {
+    console.log(data);
+
+    const formData = new FormData();
+
+    if (data.name) {
+      formData.append("name", data.name);
+    }
+
+    if (data.type) {
+      formData.append("type", data.type);
+    }
+
+    if (data.breed) {
+      formData.append("breed", data.breed);
+    }
+
+    if (data.sex) {
+      formData.append("sex", data.sex);
+    }
+
+    formData.append(
+      "birthDate",
+      data.birthDate ? data.birthDate.toISOString() : "",
+    );
+
+    if (data.price) {
+      formData.append("price", data.price);
+    }
+
+    if (data.description) {
+      formData.append("description", data.description);
+    }
+
+    data.images.forEach((file) => {
+      formData.append("images", file);
+    });
 
     if (!id) return;
 
@@ -61,7 +96,7 @@ export default function EditAnimal() {
 
       await updateAnimal({
         id,
-        ...upData,
+        formData,
       }).unwrap();
 
       toast.dismiss();
@@ -225,6 +260,9 @@ export default function EditAnimal() {
                         showYearDropdown
                         scrollableYearDropdown
                         yearDropdownItemNumber={30}
+                        popperPlacement="bottom-start"
+                        portalId="root"
+                        calendarClassName={styles.calendar}
                       />
                     )}
                   />
@@ -296,7 +334,7 @@ export default function EditAnimal() {
                   <label className={styles.inputLabel}>Images</label>
 
                   <Controller
-                    name="photo"
+                    name="images"
                     control={control}
                     render={({ field }) => (
                       <DropzoneField
@@ -466,7 +504,7 @@ export default function EditAnimal() {
     //           {errors.description && <p>{errors.description.message}</p>}
     //         </div>
     //         <Controller
-    //           name="photo"
+    //           name="images"
     //           control={control}
     //           render={({ field }) => {
     //             return (
@@ -488,7 +526,7 @@ export default function EditAnimal() {
     //               birthDate: undefined,
     //               price: undefined,
     //               description: "",
-    //               photo: [],
+    //               images: [],
     //             })
     //           }
     //         >

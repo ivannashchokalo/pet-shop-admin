@@ -9,7 +9,6 @@ import CreateNewAnimal from "../animalForms/CreateNewAnimal";
 import EditAnimal from "../animalForms/EditAnimal";
 import SignIn from "../../pages/SignIn/SignIn";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import Unauthorized from "../../pages/Unauthorized/Unauthorized";
 import AuthRedirect from "../AuthRedirect/AuthRedirect";
 
 function App() {
@@ -18,7 +17,6 @@ function App() {
       <Routes>
         <Route element={<AuthRedirect />}>
           <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/unauthorized" element={<Unauthorized />} />
         </Route>
 
         <Route element={<ProtectedRoute />}>

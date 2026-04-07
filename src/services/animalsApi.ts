@@ -1,21 +1,38 @@
+import type { Animal } from "../types/animal";
 import { baseApi } from "./api";
+
+interface GetAnimalsParams {
+  page?: number;
+  search?: string;
+  type?: string;
+  status?: string;
+}
+
+interface GetAnimalsResponse {
+  page: number;
+  perPage: number;
+  totalItems: number;
+  totalPages: number;
+  animals: Animal[];
+}
 
 export const animalsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getAnimals: builder.query({
-      // params передаємо як об'єкт
-      query: ({ page, search, type, status }) => ({
-        url: "/animals",
+    getAnimals: builder.query<GetAnimalsResponse, GetAnimalsParams | void>({
+      query: (params) => {
+        const { page, search, type, status } = params || {};
 
-        // query params (як ?page=1&search=dog)
-        params: {
-          page,
-          search,
-          type,
-          status,
-          perPage: 12,
-        },
-      }),
+        return {
+          url: "/animals",
+          params: {
+            page,
+            search,
+            type,
+            status,
+            perPage: 12,
+          },
+        };
+      },
       providesTags: ["Animals"],
     }),
 
@@ -33,10 +50,10 @@ export const animalsApi = baseApi.injectEndpoints({
       invalidatesTags: ["Animals"],
     }),
     updateAnimal: builder.mutation({
-      query: ({ id, ...data }) => ({
+      query: ({ id, formData }) => ({
         url: `/animals/${id}`,
         method: "PATCH",
-        body: data,
+        body: formData,
       }),
       invalidatesTags: ["Animals"],
     }),

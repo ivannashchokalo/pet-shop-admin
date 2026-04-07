@@ -2,6 +2,7 @@ import clsx from "clsx";
 import type { Animal } from "../../types/animal";
 import styles from "./AnimalCard.module.scss";
 import { Link, useLocation } from "react-router";
+import { DEFAULT_PET } from "../../constants/images";
 
 interface AnimalCardProps {
   animal: Animal;
@@ -14,10 +15,9 @@ export default function AnimalCard({ animal }: AnimalCardProps) {
       <Link to={`/animals/${animal._id}`} state={{ from: location }}>
         <div className={styles.animalImgWrapper}>
           <img
-            // src={animal.images[0]}
-            src="https://picsum.photos/id/237/200/300"
+            src={animal?.images[0] || DEFAULT_PET}
             alt={animal.name}
-            width={300}
+            className={styles.animalImg}
           />
         </div>
         <div className={styles.animalCardContent}>

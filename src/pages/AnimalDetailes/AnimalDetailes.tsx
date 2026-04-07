@@ -17,6 +17,10 @@ import {
   useGetAnimalByIdQuery,
   useUpdateAnimalMutation,
 } from "../../services/animalsApi";
+import { DEFAULT_PET } from "../../constants/images";
+import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import Slider from "../../components/Swiper/Swiper";
 
 export default function AnimalDetailes() {
   const { id } = useParams();
@@ -28,6 +32,8 @@ export default function AnimalDetailes() {
   const { data, isLoading, isError } = useGetAnimalByIdQuery(id);
   const [deleteAnimal] = useDeleteAnimalMutation();
   const [updateAnimal] = useUpdateAnimalMutation();
+
+  console.log(data);
 
   const handleDelete = async () => {
     try {
@@ -110,17 +116,23 @@ export default function AnimalDetailes() {
           </div>
         </div>
         <Toaster />
-        {isLoading && <p>Loading...</p>}
-        {isError && <p>Error!</p>}
+        {isLoading && <Loader />}
+        {isError && <ErrorMessage />}
         {data && (
           <div className={styles.detailesWrapper}>
-            <div>
-              <img
-                className={styles.animalImg}
-                src="https://picsum.photos/id/237/200/300"
-                alt={data.name}
-                width={300}
-              />
+            <div className={styles.leftColumn}>
+              {data?.images.length > 1 ? (
+                <Slider images={data.images} />
+              ) : (
+                <div className={styles.animalImgWrapper}>
+                  <img
+                    className={styles.animalImg}
+                    src={data?.images[0] || DEFAULT_PET}
+                    alt={data.name}
+                  />
+                </div>
+              )}
+              {/* <Slider images={data.images} /> */}
             </div>
 
             <div className={styles.rightColumn}>

@@ -1,3 +1,4 @@
+import type { Request } from "../types/request";
 import { baseApi } from "./api";
 
 export const requestsApi = baseApi.injectEndpoints({
