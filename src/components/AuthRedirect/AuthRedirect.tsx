@@ -1,11 +1,17 @@
 import { Navigate, Outlet } from "react-router";
-import { useCheckAuthQuery } from "../../services/authApi";
+import { useGetMeQuery } from "../../services/authApi";
+import { USER_ROLE } from "../../constants/usersRole";
 
 export default function AuthRedirect() {
-  const { data } = useCheckAuthQuery();
+  const { data, isLoading, isFetching } = useGetMeQuery();
 
-  if (data?.isAuthenticated) {
+  if (isLoading || isFetching) {
+    return <p>Loading...</p>;
+  }
+
+  if (data?.role === USER_ROLE.ADMIN) {
     return <Navigate to="/" replace />;
   }
+
   return <Outlet />;
 }

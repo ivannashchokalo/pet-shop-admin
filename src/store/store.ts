@@ -2,7 +2,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 // імпортуємо baseApi (а НЕ authApi)
-import { baseApi } from "../services/api";
+import { baseApi } from "../services/baseApi";
 
 export const store = configureStore({
   reducer: {

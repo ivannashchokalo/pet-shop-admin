@@ -1,23 +1,20 @@
 import { Controller, useForm } from "react-hook-form";
-import DropzoneField from "../DropzoneField/DropzoneField";
+import DropzoneField from "../../components/DropzoneField/DropzoneField";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { NumericFormat } from "react-number-format";
 import toast, { Toaster } from "react-hot-toast";
-import Section from "../Section/Section";
-import Container from "../Container/Container";
-import styles from "./AnimalForms.module.scss";
-import { useLocation } from "react-router";
-import Select from "react-select";
-import { selectStyles } from "../Select/selectStyles";
-import DropdownIndicator from "../Select/DropdownIndicator";
-import type { OptionType } from "../../types/select";
-import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
+import Section from "../../components/Section/Section";
+import Container from "../../components/Container/Container";
+import styles from "./AnimalForm.module.scss";
+import { useLocation, useNavigate } from "react-router";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import { useAddAnimalMutation } from "../../services/animalsApi";
+import AnimalTypeSelect from "../../components/AnimalTypeSelect/AnimalTypeSelect";
 
 interface CreateNewAnimalForm {
   name: string;
-  type: "dog" | "cat";
+  type: "dog" | "cat" | "bird" | "rodent";
   breed: string;
   sex: "male" | "female";
   birthDate: Date;
@@ -28,12 +25,16 @@ interface CreateNewAnimalForm {
 
 export default function CreateNewAnimal() {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
     control,
+    setError,
+    clearErrors,
   } = useForm<CreateNewAnimalForm>({
     defaultValues: {
       type: "dog",
@@ -72,6 +73,9 @@ export default function CreateNewAnimal() {
 
       toast.dismiss();
       toast.success("Created");
+
+      navigate("/animals");
+
       reset({
         name: "",
         type: "dog",
@@ -87,11 +91,6 @@ export default function CreateNewAnimal() {
     }
   };
 
-  const animalOptions: OptionType[] = [
-    { value: "dog", label: "Dog" },
-    { value: "cat", label: "Cat" },
-  ];
-
   return (
     <main>
       <Section>
@@ -101,7 +100,7 @@ export default function CreateNewAnimal() {
             className={styles.breadcrumb}
             items={[
               { title: "Animals", path: location.state?.from || "/animals" },
-              { title: "Animal details" },
+              { title: "Create animal" },
             ]}
           />
           <div className={styles.formWrapper}>
@@ -117,47 +116,12 @@ export default function CreateNewAnimal() {
                     control={control}
                     rules={{ required: "Select type of animal" }}
                     render={({ field }) => (
-                      <Select<OptionType, false>
-                        id="type"
-                        options={animalOptions}
-                        value={animalOptions.find(
-                          (option) => option.value === field.value,
-                        )}
-                        onChange={(option) => field.onChange(option?.value)}
-                        isSearchable={false}
-                        styles={{
-                          ...selectStyles,
-                          control: (provided) => ({
-                            ...provided,
-                            borderRadius: "10px",
-                            borderColor: "#c0c0c0",
-                            borderWidth: "1px",
-                            borderStyle: "solid",
-                            backgroundColor: "#eee",
-                            padding: "8px 10px",
-                            width: "302px",
-                            cursor: "pointer",
-                            boxShadow: "none",
-                            "&:hover": {
-                              borderColor: "#c0c0c0",
-                            },
-                          }),
-                          singleValue: (provided) => ({
-                            ...provided,
-                            color: "#4d4d4d",
-                            fontWeight: 500,
-                            fontSize: "16px",
-                            lineHeight: "1.5",
-                          }),
-                        }}
-                        components={{
-                          IndicatorSeparator: null,
-                          DropdownIndicator,
-                        }}
+                      <AnimalTypeSelect
+                        value={field.value}
+                        onChange={field.onChange}
                       />
                     )}
                   />
-
                   {errors.type && (
                     <p className={styles.errorText}>{errors.type.message}</p>
                   )}
@@ -327,6 +291,8 @@ export default function CreateNewAnimal() {
                           id="images"
                           value={field.value}
                           onChange={field.onChange}
+                          setError={setError}
+                          clearErrors={clearErrors}
                         />
                       );
                     }}

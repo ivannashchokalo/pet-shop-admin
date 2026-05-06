@@ -18,13 +18,13 @@ export default function SignInForm() {
 
   const onSubmit = async (data: AuthData) => {
     try {
-      const email = data.username.trim();
+      const email = data.email.trim();
       const password = data.password;
 
       await login({
-        username: email,
-        password: password,
-      }).unwrap(); //перетворює результат RTK Query у нормальний Promise
+        email,
+        password,
+      }).unwrap(); //перетворює результат RTK Query у нормальний Promise, ане special RTK object.
 
       navigate("/");
     } catch (err) {
@@ -36,14 +36,15 @@ export default function SignInForm() {
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.inputWrapper}>
         <input
+          type="email"
           className={styles.input}
-          {...registerField("username", {
-            required: "User name is required",
+          {...registerField("email", {
+            required: "Email name is required",
           })}
-          placeholder="User name"
+          placeholder="Email"
         />
         <p className={styles.errorText}>
-          {errors.username && errors.username.message}
+          {errors.email && errors.email.message}
         </p>
       </div>
       <div className={styles.inputWrapper}>

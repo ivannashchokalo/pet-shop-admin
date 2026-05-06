@@ -17,7 +17,7 @@
   display: grid;
   grid-template-columns: 495px 540px;
   justify-content: space-between;
-  row-gap: 40px;
+  row-gap: 60px;
 }
 
 .inputWrapper {
@@ -51,11 +51,7 @@
 
 .errorText {
   height: 1px;
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 1.8;
-  letter-spacing: 0em;
-  color: #e24a4a;
+  @include fonts(10px, 400, #e24a4a, 1.8);
 }
 
 .sexLabelWrapper {
@@ -118,6 +114,14 @@
 
 .dropWrapper {
   @include flex-column(8px);
+  position: relative;
+}
+
+.errorImg {
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+  @include fonts(10px, 400, #e24a4a, 1.8);
 }
 
 .btnWrapper {

@@ -1,7 +1,7 @@
 export interface Animal {
   _id: string;
   name: string;
-  type: "dog" | "cat";
+  type: "dog" | "cat" | "bird" | "rodent";
   breed: string;
   sex: "male" | "female";
   birthDate: Date;

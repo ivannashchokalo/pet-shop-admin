@@ -53,7 +53,6 @@ export default function SearchBox() {
             onClick={handleClear}
             type="button"
             className={styles.searchCrossBtn}
-            style={{}}
           >
             <Icon name="cross" size={24} className={styles.searchCrossIcon} />
           </button>

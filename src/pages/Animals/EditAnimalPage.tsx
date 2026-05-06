@@ -1,28 +1,30 @@
 import { Controller, useForm } from "react-hook-form";
-import DropzoneField from "../DropzoneField/DropzoneField";
+import DropzoneField from "../../components/DropzoneField/DropzoneField";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { NumericFormat } from "react-number-format";
 import toast, { Toaster } from "react-hot-toast";
 import { useLocation, useNavigate, useParams } from "react-router";
-import Section from "../Section/Section";
-import Container from "../Container/Container";
-import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
+import Section from "../../components/Section/Section";
+import Container from "../../components/Container/Container";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import {
   useGetAnimalByIdQuery,
   useUpdateAnimalMutation,
 } from "../../services/animalsApi";
-import styles from "./AnimalForms.module.scss";
+import styles from "./AnimalForm.module.scss";
+import AnimalTypeSelect from "../../components/AnimalTypeSelect/AnimalTypeSelect";
+import { useEffect } from "react";
 
-interface UpdateAnimalForm {
+export interface UpdateAnimalForm {
   name: string;
-  type: "dog" | "cat";
+  type: "dog" | "cat" | "bird" | "rodent";
   breed: string;
   sex: "male" | "female";
   birthDate: Date | null;
   price: number;
   description: string;
-  images: File[];
+  images: (File | string)[];
 }
 
 export default function EditAnimal() {
@@ -38,8 +40,11 @@ export default function EditAnimal() {
     formState: { errors },
     reset,
     control,
+    setError,
+    clearErrors,
   } = useForm<UpdateAnimalForm>({
     defaultValues: {
+      // defaultValues читаються лише ПІД ЧАС створення useForm, не при кожному render
       name: data?.name,
       type: data?.type,
       breed: data?.breed,
@@ -51,26 +56,37 @@ export default function EditAnimal() {
     },
     mode: "onBlur",
   });
+
+  // Сторінка перезавантажилась
+  // Компонент реально монтується заново
+
+  // але defaultValues процюють не стабільно
+
+  // тому RHF docs рекомендують useEffect + reset
+
+  useEffect(() => {
+    // кожного разу, коли приходить data, дані у формі оновлюються
+    if (data) {
+      // У нашому випадку після перезавантаження сторінки форма не очищається
+      reset({
+        name: data.name,
+        type: data.type,
+        breed: data.breed,
+        birthDate: data.birthDate ? new Date(data.birthDate) : null,
+        price: data.price,
+        description: data.description,
+        images: data.images,
+        sex: data.sex,
+      });
+    }
+  }, [data, reset]);
+
   const onSubmit = async (data: UpdateAnimalForm) => {
-    console.log(data);
-
     const formData = new FormData();
-
-    if (data.name) {
-      formData.append("name", data.name);
-    }
-
-    if (data.type) {
-      formData.append("type", data.type);
-    }
-
-    if (data.breed) {
-      formData.append("breed", data.breed);
-    }
-
-    if (data.sex) {
-      formData.append("sex", data.sex);
-    }
+    formData.append("name", data.name);
+    formData.append("type", data.type);
+    formData.append("breed", data.breed);
+    formData.append("sex", data.sex);
 
     formData.append(
       "birthDate",
@@ -93,10 +109,12 @@ export default function EditAnimal() {
 
     try {
       toast.loading("Updating...");
-
+      for (const [key, value] of formData.entries()) {
+        console.log(key, value);
+      }
       await updateAnimal({
         id,
-        formData,
+        body: formData,
       }).unwrap();
 
       toast.dismiss();
@@ -127,9 +145,7 @@ export default function EditAnimal() {
             <h1 className={styles.title}>Edit animal details</h1>
 
             <form className={styles.addForm} onSubmit={handleSubmit(onSubmit)}>
-              {/* LEFT SIDE */}
               <div>
-                {/* NAME */}
                 <div className={styles.inputWrapper}>
                   <label className={styles.inputLabel} htmlFor="name">
                     Name<span className={styles.star}>*</span>
@@ -151,41 +167,25 @@ export default function EditAnimal() {
                     <p className={styles.errorText}>{errors.name.message}</p>
                   )}
                 </div>
-
-                {/* TYPE */}
                 <div className={styles.inputWrapper}>
                   <legend className={styles.inputLabel}>
                     Animal Type<span className={styles.star}>*</span>
                   </legend>
-
-                  <div className={styles.sexLabelWrapper}>
-                    <label className={styles.sexLabel}>
-                      Dog
-                      <input
-                        className={styles.sexInput}
-                        type="radio"
-                        value="dog"
-                        {...register("type")}
+                  <Controller
+                    name="type"
+                    control={control}
+                    rules={{ required: "Select type of animal" }}
+                    render={({ field }) => (
+                      <AnimalTypeSelect
+                        value={field.value}
+                        onChange={field.onChange}
                       />
-                    </label>
-
-                    <label className={styles.sexLabel}>
-                      Cat
-                      <input
-                        className={styles.sexInput}
-                        type="radio"
-                        value="cat"
-                        {...register("type")}
-                      />
-                    </label>
-                  </div>
-
+                    )}
+                  />
                   {errors.type && (
                     <p className={styles.errorText}>{errors.type.message}</p>
                   )}
                 </div>
-
-                {/* BREED */}
                 <div className={styles.inputWrapper}>
                   <label className={styles.inputLabel} htmlFor="breed">
                     Breed<span className={styles.star}>*</span>
@@ -207,8 +207,6 @@ export default function EditAnimal() {
                     <p className={styles.errorText}>{errors.breed.message}</p>
                   )}
                 </div>
-
-                {/* SEX */}
                 <div className={styles.inputWrapper}>
                   <legend className={styles.inputLabel}>
                     Sex<span className={styles.star}>*</span>
@@ -240,8 +238,6 @@ export default function EditAnimal() {
                     <p className={styles.errorText}>{errors.sex.message}</p>
                   )}
                 </div>
-
-                {/* DATE */}
                 <div className={styles.inputWrapper}>
                   <label className={styles.inputLabel} htmlFor="birthDate">
                     Date of birth
@@ -273,8 +269,6 @@ export default function EditAnimal() {
                     </p>
                   )}
                 </div>
-
-                {/* PRICE */}
                 <div className={styles.inputWrapper}>
                   <label className={styles.inputLabel} htmlFor="price">
                     Price
@@ -302,10 +296,7 @@ export default function EditAnimal() {
                   )}
                 </div>
               </div>
-
-              {/* RIGHT SIDE */}
               <div>
-                {/* DESCRIPTION */}
                 <div className={styles.descWrapper}>
                   <label className={styles.inputLabel} htmlFor="description">
                     Description
@@ -328,8 +319,6 @@ export default function EditAnimal() {
                     </p>
                   )}
                 </div>
-
-                {/* IMAGES */}
                 <div className={styles.dropWrapper}>
                   <label className={styles.inputLabel}>Images</label>
 
@@ -340,18 +329,32 @@ export default function EditAnimal() {
                       <DropzoneField
                         value={field.value}
                         onChange={field.onChange}
+                        setError={setError}
+                        clearErrors={clearErrors}
                       />
                     )}
                   />
+                  {errors.images && (
+                    <p className={styles.errorImg}>{errors.images.message}</p>
+                  )}
                 </div>
               </div>
-
-              {/* BUTTONS */}
               <div className={styles.btnWrapper}>
                 <button
                   type="button"
                   className={styles.resetBtn}
-                  onClick={() => reset()}
+                  onClick={() =>
+                    reset({
+                      name: "",
+                      type: "dog",
+                      breed: "",
+                      sex: "male",
+                      birthDate: null,
+                      price: 0,
+                      description: "",
+                      images: [],
+                    })
+                  }
                 >
                   Reset
                 </button>

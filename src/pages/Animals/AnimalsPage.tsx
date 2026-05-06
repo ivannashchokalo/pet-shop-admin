@@ -3,7 +3,7 @@ import FilterPanel from "../../components/FilterPanel/FilterPanel";
 import ReactPaginate from "react-paginate";
 import { Toaster } from "react-hot-toast";
 import { Link, useLocation, useSearchParams } from "react-router";
-import styles from "./Animals.module.scss";
+import styles from "./AnimalsPage.module.scss";
 import Icon from "../../components/Icon/Icon";
 import Container from "../../components/Container/Container";
 import Section from "../../components/Section/Section";

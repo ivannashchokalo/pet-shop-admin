@@ -38,17 +38,12 @@
   }
 }
 
-.detailesWrapper {
+.detailsWrapper {
   @include border;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 54px;
   align-items: center;
-}
-
-.leftColumn {
-  // width: 100%;
-  // min-width: 0;
 }
 
 .animalImgWrapper {

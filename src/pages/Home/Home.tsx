@@ -1,9 +1,9 @@
 import AnimalsPieChart from "../../components/AnimalsCharts/AnimalsPieChart";
 import AnimalsStatusDonutChart from "../../components/AnimalsCharts/AnimalsStatusDonutChart";
 import Container from "../../components/Container/Container";
-import RequestsChart from "../../components/RequestsChart/RequestsChart";
+import RequestsChart from "../../components/RequestsCharts/RequestsChart";
 import Section from "../../components/Section/Section";
-import WeeklyRequestsChart from "../../components/RequestsChart/MonthlyRequestsChart";
+import WeeklyRequestsChart from "../../components/RequestsCharts/MonthlyRequestsChart";
 import styles from "./Home.module.scss";
 
 export default function Home() {

@@ -14,14 +14,11 @@ export default function Header() {
   const handleLogout = async () => {
     try {
       await logout().unwrap();
-      console.log("logouted");
 
       dispatch(authApi.util.resetApiState()); // очищає все(кеш), аналогія queryClient.removeQueries({ queryKey: ["user"] });
 
       navigate("/sign-in");
     } catch (error) {
-      console.log(error);
-
       toast.error("Logout failed");
     }
   };

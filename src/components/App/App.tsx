@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router";
 import Layout from "../Layout";
 import Home from "../../pages/Home/Home";
-import Animals from "../../pages/Animals/Animals";
-import AnimalDetailes from "../../pages/AnimalDetailes/AnimalDetailes";
+import Animals from "../../pages/Animals/AnimalsPage";
+import AnimalDetailes from "../../pages/AnimalDetailes/AnimalDetails";
 import Request from "../../pages/Requests/Request";
 import Settings from "../../pages/Settings/Settings";
-import CreateNewAnimal from "../animalForms/CreateNewAnimal";
-import EditAnimal from "../animalForms/EditAnimal";
+import CreateNewAnimal from "../../pages/Animals/CreateAnimalPage";
+import EditAnimal from "../../pages/Animals/EditAnimalPage";
 import SignIn from "../../pages/SignIn/SignIn";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import AuthRedirect from "../AuthRedirect/AuthRedirect";

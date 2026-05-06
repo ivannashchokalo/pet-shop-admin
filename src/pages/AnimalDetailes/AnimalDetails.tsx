@@ -1,16 +1,12 @@
 import { useLocation, useNavigate, useParams } from "react-router";
 import clsx from "clsx";
-import styles from "./AnimalDetailes.module.scss";
+import styles from "./AnimalDetails.module.scss";
 import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import Icon from "../../components/Icon/Icon";
 import Modal from "../../components/Modal/Modal";
 import Container from "../../components/Container/Container";
 import Section from "../../components/Section/Section";
-import Select from "react-select";
-import type { OptionType } from "../../types/select";
-import { selectStyles } from "../../components/Select/selectStyles";
-import DropdownIndicator from "../../components/Select/DropdownIndicator";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import {
   useDeleteAnimalMutation,
@@ -21,8 +17,9 @@ import { DEFAULT_PET } from "../../constants/images";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Slider from "../../components/Swiper/Swiper";
+import AnimalStatusSelect from "../../components/AnimalStatusSelect/AnimalStatusSelect";
 
-export default function AnimalDetailes() {
+export default function AnimalDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
@@ -33,15 +30,13 @@ export default function AnimalDetailes() {
   const [deleteAnimal] = useDeleteAnimalMutation();
   const [updateAnimal] = useUpdateAnimalMutation();
 
-  console.log(data);
-
   const handleDelete = async () => {
     try {
       toast.loading("Deleting...");
 
       await deleteAnimal(id).unwrap();
 
-      toast.dismiss();
+      toast.dismiss(); //закриває попередній toast
       toast.success("Deleted");
 
       navigate("/animals");
@@ -52,29 +47,22 @@ export default function AnimalDetailes() {
   };
 
   const handleUpdateStatus = async (status: string) => {
-    if (!id) return;
-
+    // if (!id) return;
     try {
       toast.loading("Updating...");
 
       await updateAnimal({
         id,
-        status,
+        body: { status },
       }).unwrap();
 
       toast.dismiss();
       toast.success("Updated");
-    } catch (error) {
+    } catch {
       toast.dismiss();
       toast.error("Error");
     }
   };
-
-  const options: OptionType[] = [
-    { value: "available", label: "Available" },
-    { value: "reserved", label: "Reserved" },
-    { value: "sold", label: "Sold" },
-  ];
 
   return (
     <Section>
@@ -88,19 +76,9 @@ export default function AnimalDetailes() {
             ]}
           />
           <div className={styles.changeBtnWrapper}>
-            <Select
-              options={options}
-              value={options.find((option) => option.value === data?.status)}
-              onChange={(option) => {
-                if (!option) return;
-                handleUpdateStatus(option.value);
-              }}
-              isSearchable={false}
-              styles={selectStyles}
-              components={{
-                IndicatorSeparator: null,
-                DropdownIndicator,
-              }}
+            <AnimalStatusSelect
+              value={data?.status || ""}
+              onChange={handleUpdateStatus}
             />
 
             <button
@@ -116,24 +94,22 @@ export default function AnimalDetailes() {
             </button>
           </div>
         </div>
-        <Toaster />
         {isLoading && <Loader />}
         {isError && <ErrorMessage />}
         {data && (
-          <div className={styles.detailesWrapper}>
+          <div className={styles.detailsWrapper}>
             <div className={styles.leftColumn}>
-              {data?.images.length > 1 ? (
+              {data.images.length > 1 ? (
                 <Slider images={data.images} />
               ) : (
                 <div className={styles.animalImgWrapper}>
                   <img
                     className={styles.animalImg}
-                    src={data?.images[0] || DEFAULT_PET}
+                    src={data.images[0] || DEFAULT_PET}
                     alt={data.name}
                   />
                 </div>
               )}
-              {/* <Slider images={data.images} /> */}
             </div>
 
             <div className={styles.rightColumn}>
@@ -171,7 +147,7 @@ export default function AnimalDetailes() {
                   <div
                     className={clsx(styles.flexWrapper, styles.bigGapWrapper)}
                   >
-                    <p className={styles.desTitle}>Data of Birth:</p>
+                    <p className={styles.desTitle}>Date of Birth:</p>
                     <p className={styles.desText}>
                       {new Date(data?.birthDate).toLocaleDateString()}
                     </p>
@@ -190,7 +166,7 @@ export default function AnimalDetailes() {
                     className={clsx(styles.flexWrapper, styles.bigGapWrapper)}
                   >
                     <p className={styles.desTitle}>Price:</p>
-                    <p className={styles.desPrice}>{data?.price}$</p>
+                    <p className={styles.desPrice}>{data.price}$</p>
                   </div>
                 )}
               </div>

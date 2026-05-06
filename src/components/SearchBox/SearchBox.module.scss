@@ -37,10 +37,15 @@
   background-color: transparent;
   border: none;
   line-height: 0;
+
+  &:hover .searchCrossIcon {
+    opacity: 0.5;
+  }
 }
 
 .searchCrossIcon {
   fill: #4d4d4d;
+  transition: all 200ms ease;
 }
 
 .formSubmitBtn {
