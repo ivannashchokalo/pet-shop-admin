@@ -1,48 +1,58 @@
-@use "../../styles" as *;
+@use "../../styles/abstracts" as abs;
 
 header {
   padding: 24px 0 8px;
-  border-bottom: solid 1px #c0c0c0;
+
+  border-bottom: 1px solid var(--color-border);
 }
 
 .headerContainer {
-  @include flex-center(null);
+  @include abs.flex-center(null);
 }
 
 .nav {
-  @include flex-center(space-between);
+  @include abs.flex-center(space-between);
+
   flex-grow: 1;
 }
 
 .logoIcon {
-  fill: #000;
+  fill: var(--color-text);
 }
 
 .navList {
-  @include flex-center(null);
+  @include abs.flex-center(null);
+
   gap: 32px;
+
   margin: 0 auto;
 }
 
 .navListLink {
-  @include flex-center(null);
-  @include fonts($color: #a2a2a2);
-  padding: 10px 15px;
+  @include abs.flex-center(null);
+
+  @include abs.fonts($color: var(--color-text-muted));
+
   gap: 8px;
-  transition: all 0.2s ease;
+
+  padding: 10px 15px;
+
+  transition: abs.$transition;
 
   &:hover,
   &:focus-visible {
-    border-radius: 8px;
-    background-color: #eee;
-    color: #131313;
+    border-radius: abs.$radius-sm;
+
+    background-color: var(--color-background-hover);
+    color: var(--color-text);
   }
 }
 
 .activeLink {
-  border-radius: 8px;
-  background-color: #eee;
-  color: #131313;
+  border-radius: abs.$radius-sm;
+
+  background-color: var(--color-background-hover);
+  color: var(--color-text);
 }
 
 .navListIcon {
@@ -50,21 +60,21 @@ header {
 }
 
 // .authList {
-//   @include flex-center(null);
+//   @include abs.flex-center(null);
 //   gap: 16px;
 //   margin-left: 125px;
 // }
 
 // .signIn {
-//   @include button(
+//   @include abs.button(
 //     transparent,
 //     rgba(192, 192, 192, 0.1),
 //     rgba(192, 192, 192, 0.4),
-//     #222,
-//     0.5px solid #222
+//     var(--color-primary),
+//     0.5px solid var(--color-primary)
 //   );
 // }
 
 .logout {
-  @include button;
+  @include abs.button;
 }

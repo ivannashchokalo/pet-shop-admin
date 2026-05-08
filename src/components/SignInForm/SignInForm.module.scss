@@ -1,7 +1,8 @@
-@use "../../styles/" as *;
+@use "../../styles/abstracts" as abs;
 
 .form {
-  @include border(30px 40px);
+  @include abs.border(30px 40px);
+
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -12,20 +13,28 @@
 }
 
 .input {
-  @include fonts(14px);
-  border: 1px solid #c0c0c0;
-  border-radius: 8px;
-  padding: 8px 10px;
+  @include abs.fonts($fs: 14px, $color: var(--color-text));
+
   width: 400px;
   height: 40px;
+
+  padding: 8px 10px;
+
+  border: 1px solid var(--color-border);
+  border-radius: abs.$radius-sm;
+
   outline: none;
 
+  background-color: var(--color-background);
+
+  transition: abs.$transition;
+
   &:focus {
-    border: 1px solid #a2a2a2;
+    border-color: var(--color-text-muted);
   }
 
   &::placeholder {
-    @include fonts($fs: 14px, $color: #c0c0c0);
+    @include abs.fonts($fs: 14px, $color: var(--color-border));
   }
 }
 
@@ -33,15 +42,17 @@
   position: absolute;
   top: 40px;
   left: 0;
-  //   height: 1px;
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 1.8;
-  letter-spacing: 0em;
-  color: #e24a4a;
+
+  @include abs.fonts(
+    $fs: 10px,
+    $fw: 400,
+    $color: var(--color-danger),
+    $lh: 1.8
+  );
 }
 
 .button {
-  @include button();
+  @include abs.button;
+
   align-self: center;
 }

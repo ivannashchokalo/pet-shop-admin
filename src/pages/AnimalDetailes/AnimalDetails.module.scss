@@ -1,18 +1,22 @@
-@use "../../styles" as *;
+@use "../../styles/abstracts" as abs;
 
 .btnsWrapper {
-  @include flex-center(null);
+  @include abs.flex-center(null);
+
   margin-bottom: 48px;
 }
 
 .changeBtnWrapper {
-  @include flex-center;
-  margin-left: auto;
+  @include abs.flex-center;
+
   gap: 16px;
+
+  margin-left: auto;
 }
 
 .editBtn {
-  @include button;
+  @include abs.button;
+
   gap: 4px;
 }
 
@@ -21,12 +25,17 @@
 }
 
 .deleteBtn {
-  @include fonts(16px, 600, #e24a4a);
-  padding: 8px 5px;
-  border: none;
-  background-color: transparent;
+  @include abs.fonts($fs: 16px, $fw: 600, $color: var(--color-danger));
+
   align-self: start;
-  transition: all 0.2s ease;
+
+  padding: 8px 5px;
+
+  border: none;
+
+  background-color: transparent;
+
+  transition: abs.$transition;
 
   &:hover,
   &:focus-visible {
@@ -34,12 +43,13 @@
   }
 
   &:active {
-    color: #d60000;
+    color: #b31a1a;
   }
 }
 
 .detailsWrapper {
-  @include border;
+  @include abs.border;
+
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 54px;
@@ -49,29 +59,35 @@
 .animalImgWrapper {
   width: 100%;
   height: 500px;
-  border-radius: 12px;
+
   overflow: hidden;
-  background-color: #f5f5f5;
+
+  border-radius: abs.$radius-md;
+
+  background-color: var(--color-background-secondary);
 }
 
 .animalImg {
   width: 100%;
   height: 100%;
+
   object-fit: contain;
 }
 
 .rightColumn {
-  @include flex-column;
+  @include abs.flex-column;
+
   height: 100%;
 }
 
 .contentWrapper {
-  @include flex-column(16px);
+  @include abs.flex-column(16px);
+
   margin-bottom: 32px;
 }
 
 .desTitle {
-  @include fonts(20px, 600, #353535);
+  @include abs.fonts($fs: 20px, $fw: 600, $color: var(--color-primary-hover));
 }
 
 .titlePos {
@@ -79,18 +95,19 @@
 }
 
 .desText {
-  @include fonts(18px);
+  @include abs.fonts($fs: 18px, $color: var(--color-text));
 }
 
 .desBorder {
   margin-bottom: 16px;
   padding: 15px;
-  border: 0.5px solid #d9d9d9;
-  border-radius: 8px;
+
+  border: 0.5px solid var(--color-border);
+  border-radius: abs.$radius-sm;
 }
 
 .flexWrapper {
-  @include flex-center(null);
+  @include abs.flex-center(null);
 }
 
 .smoleGapWrapper {
@@ -102,66 +119,75 @@
 }
 
 .badge {
-  @include flex-center;
-  @include fonts($fs: 14px, $fw: 500, $color: #fff, $ls: 0.01em);
-  border-radius: 8px;
+  @include abs.flex-center;
+
+  @include abs.fonts($fs: 14px, $fw: 500, $color: #fff, $ls: 0.01em);
+
   width: 110px;
   height: 27px;
+
+  border-radius: abs.$radius-sm;
 }
 
 .available {
-  background-color: #28a745;
+  background-color: var(--color-success);
 }
 
 .reserved {
-  background-color: #ffc107;
+  background-color: var(--color-warning);
 }
 
 .sold {
-  background-color: #6c757d;
+  background-color: var(--color-text-secondary);
 }
 
 .desPrice {
-  @include fonts(20px, 700, #080808);
+  @include abs.fonts($fs: 20px, $fw: 700, $color: var(--color-text));
 }
 
 .desColor {
-  color: #000;
+  color: var(--color-text);
 }
 
 .desPos {
-  margin-bottom: 8px;
   margin-top: auto;
+  margin-bottom: 8px;
 }
 
 //========== delete modal
 
 .modalIcon {
   margin-bottom: 16px;
-  fill: #d60000;
+
+  fill: var(--color-danger);
 }
 
 .modalTitle {
-  @include fonts(24px, 600, #000, 1);
+  @include abs.fonts($fs: 24px, $fw: 600, $color: var(--color-text), $lh: 1);
+
   margin-bottom: 8px;
+
   text-align: center;
 }
 
 .modalText {
-  @include fonts(14px, 500, #757575);
+  @include abs.fonts($fs: 14px, $fw: 500, $color: var(--color-text-secondary));
+
   margin-bottom: 32px;
+
   text-align: center;
 }
 
 .modalBtnsWrapper {
-  @include flex-center(space-evenly);
+  @include abs.flex-center(space-evenly);
+
   width: 100%;
 }
 
 .modalBtnCancel {
-  @include button(#d9d9d9, #c0c0c0, #a2a2a2, #353535);
+  @include abs.button(#d9d9d9, #c0c0c0, #a2a2a2, #353535);
 }
 
 .modalBtnDelete {
-  @include button(#d60000, #b31a1a, #7d1313);
+  @include abs.button(var(--color-danger), #b31a1a, #7d1313);
 }

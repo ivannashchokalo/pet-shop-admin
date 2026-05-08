@@ -1,52 +1,64 @@
-@use "../../styles" as *;
+@use "../../styles/abstracts" as abs;
 
 .wrapper {
   position: relative;
+
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
 .dropZone {
-  @include flex-center;
-  border: 1px solid #d9d9d9;
-  border-radius: 8px;
+  @include abs.flex-center;
+
   width: 100%;
   height: 208px;
-  background-color: #eee;
-  text-align: center;
+
+  border: 1px solid var(--color-border);
+  border-radius: abs.$radius-sm;
+
+  background-color: var(--color-background-hover);
+
   cursor: pointer;
-  transition: $transition;
+  text-align: center;
+
+  transition: abs.$transition;
 
   &:hover {
-    background-color: #c0c0c0;
+    background-color: var(--color-border);
   }
 }
 
 .content {
-  @include flex-center(null);
+  @include abs.flex-center(null);
+
   flex-direction: column;
 }
 
 .dropIcon {
   margin-bottom: 20px;
-  background-color: #fff;
-  border-radius: 8px;
   padding: 10px;
+
+  border-radius: abs.$radius-sm;
+
+  background-color: var(--color-background);
 }
 
 .title {
-  @include fonts($fw: 500, $color: #131313);
+  @include abs.fonts($fw: 500, $color: var(--color-text));
+
   margin-bottom: 5px;
 }
 
 .subtitle {
-  @include fonts($fs: 15px, $color: #4d4d4d);
+  @include abs.fonts($fs: 15px, $color: var(--color-text-secondary));
+
   text-align: center;
 }
 
 .files {
-  @include fonts($fs: 15px, $color: #4d4d4d);
+  @include abs.fonts($fs: 15px, $color: var(--color-text-secondary));
+
   margin-top: 10px;
 }
 
@@ -54,6 +66,7 @@
   position: absolute;
   bottom: -60px;
   left: 0;
+
   display: flex;
   gap: 4px;
 }
@@ -63,32 +76,39 @@
   height: 30px;
 
   overflow: hidden;
-  border-radius: 8px;
+
+  border-radius: abs.$radius-sm;
 }
 
 .previewImage {
   width: 100%;
   height: 100%;
+
   object-fit: cover;
 }
 
 .removeBtn {
-  background-color: transparent;
-  border: none;
   width: 20px;
   height: 20px;
+
+  border: none;
+
+  background-color: transparent;
+
   line-height: 0;
 
   &:hover .deleteIcon,
   &:focus-visible .deleteIcon {
     opacity: 0.5;
   }
+
   &:active .deleteIcon {
     opacity: 0.7;
   }
 }
 
 .deleteIcon {
-  fill: #4d4d4d;
-  transition: all 200ms ease;
+  fill: var(--color-text-secondary);
+
+  transition: abs.$transition;
 }

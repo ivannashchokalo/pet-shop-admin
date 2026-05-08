@@ -1,4 +1,9 @@
-import type { Animal } from "../types/animal";
+import type {
+  Animal,
+  AnimalId,
+  CreateAnimalData,
+  UpdateAnimalData,
+} from "../types/animal";
 import { baseApi } from "./baseApi";
 
 interface GetAnimalsParams {
@@ -15,6 +20,8 @@ interface GetAnimalsResponse {
   totalPages: number;
   animals: Animal[];
 }
+
+//builder.mutation<ResponseType, RequestType>
 
 export const animalsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -36,12 +43,12 @@ export const animalsApi = baseApi.injectEndpoints({
       providesTags: ["Animals"],
     }),
 
-    getAnimalById: builder.query({
+    getAnimalById: builder.query<Animal, AnimalId>({
       query: (id) => `/animals/${id}`,
       providesTags: ["Animals"],
     }),
 
-    addAnimal: builder.mutation({
+    addAnimal: builder.mutation<Animal, CreateAnimalData>({
       query: (body) => ({
         url: "/animals",
         method: "POST",
@@ -49,15 +56,15 @@ export const animalsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Animals"],
     }),
-    updateAnimal: builder.mutation({
-      query: ({ id, body }) => ({
+    updateAnimal: builder.mutation<Animal, UpdateAnimalData>({
+      query: ({ id, ...body }) => ({
         url: `/animals/${id}`,
         method: "PATCH",
         body,
       }),
       invalidatesTags: ["Animals"],
     }),
-    deleteAnimal: builder.mutation({
+    deleteAnimal: builder.mutation<Animal, AnimalId>({
       query: (id) => ({
         url: `/animals/${id}`,
         method: "DELETE",

@@ -1,0 +1,17 @@
+@use "../abstracts" as abs;
+
+:root {
+  --font-main: #{abs.$font-family};
+  --font-second: #{abs.$font-family-secondary};
+}
+
+body {
+  min-height: 100vh;
+
+  font-family: var(--font-main);
+
+  background-color: var(--color-background);
+  color: var(--color-text);
+
+  transition: abs.$transition;
+}

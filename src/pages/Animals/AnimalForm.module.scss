@@ -1,15 +1,16 @@
-@use "../../styles" as *;
+@use "../../styles/abstracts" as abs;
 
 .breadcrumb {
   margin-bottom: 32px;
 }
 
 .formWrapper {
-  @include border($padding: 32px 45px);
+  @include abs.border($padding: 32px 45px);
 }
 
 .title {
-  @include fonts(32px, 600);
+  @include abs.fonts($fs: 32px, $fw: 600, $color: var(--color-text));
+
   margin-bottom: 40px;
 }
 
@@ -17,11 +18,12 @@
   display: grid;
   grid-template-columns: 495px 540px;
   justify-content: space-between;
+
   row-gap: 60px;
 }
 
 .inputWrapper {
-  @include flex-center(space-between);
+  @include abs.flex-center(space-between);
 }
 
 .inputWrapper:not(:last-child) {
@@ -29,91 +31,130 @@
 }
 
 .inputLabel {
-  @include fonts(20px, 500, #353535);
+  @include abs.fonts($fs: 20px, $fw: 500, $color: var(--color-primary-hover));
 }
 
 .input {
-  border: 1px solid #c0c0c0;
-  border-radius: 8px;
-  padding: 11px 10px;
+  @include abs.fonts($fs: 14px, $color: var(--color-text));
+
   width: 302px;
+
+  padding: 11px 10px;
+
+  border: 1px solid var(--color-border);
+  border-radius: abs.$radius-sm;
+
   outline: none;
-  @include fonts(14px);
+
+  background-color: var(--color-background);
+
+  transition: abs.$transition;
 
   &:focus {
-    border: 1px solid #a2a2a2;
+    border-color: var(--color-text-muted);
   }
 
   &::placeholder {
-    @include fonts($fs: 12px, $color: #c0c0c0);
+    @include abs.fonts($fs: 12px, $color: var(--color-border));
   }
 }
 
 .errorText {
   height: 1px;
-  @include fonts(10px, 400, #e24a4a, 1.8);
+
+  @include abs.fonts(
+    $fs: 10px,
+    $fw: 400,
+    $color: var(--color-danger),
+    $lh: 1.8
+  );
 }
 
 .sexLabelWrapper {
-  @include flex-center;
+  @include abs.flex-center;
+
   gap: 8px;
-  border-radius: 8px;
-  padding: 4px;
+
   width: 302px;
   height: 45px;
-  background-color: #eee;
+
+  padding: 4px;
+
+  border-radius: abs.$radius-sm;
+
+  background-color: var(--color-background-hover);
 }
 
 .sexLabel {
-  @include flex-center;
-  @include fonts(14px, 500, #c0c0c0);
-  background-color: transparent;
-  border-radius: 8px;
-  padding: 8px;
+  @include abs.flex-center;
+
+  @include abs.fonts($fs: 14px, $fw: 500, $color: var(--color-border));
+
   width: 140px;
   height: 37px;
+
+  padding: 8px;
+
+  border-radius: abs.$radius-sm;
+
+  background-color: transparent;
+
   cursor: pointer;
 
+  transition: abs.$transition;
+
   &:has(input:checked) {
-    background-color: #222;
+    background-color: var(--color-primary);
+    color: #fff;
   }
 }
 
 .sexInput {
-  opacity: 0;
   cursor: pointer;
+
+  opacity: 0;
 }
 
 .star {
-  @include fonts(20px, 500, #cc3131);
+  @include abs.fonts($fs: 20px, $fw: 500, $color: #cc3131);
 }
 
 .descWrapper {
-  @include flex-column(8px);
+  @include abs.flex-column(8px);
+
   margin-bottom: 24px;
 }
 
 .description {
-  @include fonts(14px);
-  resize: none;
+  @include abs.fonts($fs: 14px, $color: var(--color-text));
+
   height: 96px;
-  border: 1px solid #c0c0c0;
-  border-radius: 10px;
+
   padding: 8px 10px;
-  background-color: rgba(192, 192, 192, 0.1);
+
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+
   outline: none;
 
+  background-color: rgb(192 192 192 / 10%);
+
+  resize: none;
+
+  transition: abs.$transition;
+
   &:focus {
-    border: 1px solid #a2a2a2;
+    border-color: var(--color-text-muted);
+  }
+
+  &::placeholder {
+    @include abs.fonts($fs: 14px, $color: var(--color-border));
   }
 }
 
-.description::placeholder {
-  @include fonts($fs: 14px, $color: #c0c0c0);
-}
-
 .dropWrapper {
-  @include flex-column(8px);
+  @include abs.flex-column(8px);
+
   position: relative;
 }
 
@@ -121,62 +162,74 @@
   position: absolute;
   right: 0;
   bottom: -20px;
-  @include fonts(10px, 400, #e24a4a, 1.8);
+
+  @include abs.fonts(
+    $fs: 10px,
+    $fw: 400,
+    $color: var(--color-danger),
+    $lh: 1.8
+  );
 }
 
 .btnWrapper {
-  @include flex-center(space-between, null);
-  grid-column: 1/3;
+  @include abs.flex-center(space-between, null);
+
+  grid-column: 1 / 3;
 }
 
 .submitBtn {
-  @include button(#2e7d5a, #266c4d, #1c543c);
+  @include abs.button(#2e7d5a, #266c4d, #1c543c);
 }
 
 .resetBtn {
-  @include button(
+  @include abs.button(
     transparent,
-    rgba(192, 192, 192, 0.1),
-    rgba(192, 192, 192, 0.4),
-    #353535,
-    1px solid #eee
+    rgb(192 192 192 / 10%),
+    rgb(192 192 192 / 40%),
+    var(--color-primary-hover),
+    1px solid var(--color-background-hover)
   );
 }
 
 .calendar {
   height: 300px;
-  border: 1px solid #c0c0c0;
-  border-radius: 12px;
+
   overflow: hidden;
+
+  border: 1px solid var(--color-border);
+  border-radius: abs.$radius-md;
+
   font-family: inherit;
 
   :global(.react-datepicker__header) {
-    background-color: #f5f5f5;
-    border-bottom: 1px solid #c0c0c0;
+    background-color: var(--color-background-secondary);
+    border-bottom: 1px solid var(--color-border);
   }
 
   :global(.react-datepicker__current-month) {
+    color: var(--color-primary);
+
     font-size: 18px;
     font-weight: 600;
-    color: #222;
   }
 
   :global(.react-datepicker__day) {
-    border-radius: 8px;
+    border-radius: abs.$radius-sm;
   }
 
   :global(.react-datepicker__day:hover) {
-    background-color: #eee;
+    background-color: var(--color-background-hover);
   }
 
   :global(.react-datepicker__day--selected) {
     background-color: #2e7d5a;
-    color: white;
+    color: #fff;
+
     font-weight: 600;
   }
 
   :global(.react-datepicker__day--keyboard-selected) {
     background-color: #d7f3e6;
-    color: #222;
+    color: var(--color-primary);
   }
 }

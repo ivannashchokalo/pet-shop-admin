@@ -1,21 +1,28 @@
-@use "../../styles" as *;
+@use "../../styles/abstracts" as abs;
 
 .wrapper {
-  @include flex-center(space-between, start);
+  @include abs.flex-center(space-between, start);
+
   margin-bottom: 48px;
 }
 
 .title {
-  @include fonts(32px, 600);
-  @include flex-column(8px);
+  @include abs.flex-column(8px);
+
+  @include abs.fonts($fs: 32px, $fw: 600, $color: var(--color-text));
 }
 
 .subTitle {
-  @include fonts;
+  @include abs.fonts($color: var(--color-text));
 }
 
 .addButton {
-  @include button(#080808, #353535, #4d4d4d);
+  @include abs.button(
+    var(--color-primary),
+    var(--color-primary-hover),
+    var(--color-primary-active)
+  );
+
   gap: 7px;
 }
 
@@ -32,41 +39,57 @@
 }
 
 .pagination {
-  @include flex-center(center, null);
-  margin: 0 auto;
+  @include abs.flex-center(center, null);
+
   gap: 8px;
-  list-style: none;
+
+  margin: 0 auto;
   padding: 0;
+
+  list-style: none;
 }
 
 .pagination li {
   width: 32px;
   height: 32px;
-  border-radius: 4px;
+
+  border-radius: abs.$radius-xs;
 }
 
 .pagination li:not(.disabled) {
   border: 0.75px solid #dfe3e8;
-  background-color: #fff;
+
+  background-color: var(--color-background);
+
   cursor: pointer;
+
+  transition: abs.$transition;
 
   &:hover,
   &:focus-visible,
   &:active {
-    border: 0.75px solid #080808;
+    border-color: var(--color-primary);
   }
 }
 
 .pagination a {
-  @include flex-center;
-  @include fonts(14px, 700, #080808, 1.4);
-  font-family: $second-family;
+  @include abs.flex-center;
+
+  @include abs.fonts(
+    $fs: 14px,
+    $fw: 700,
+    $color: var(--color-primary),
+    $lh: 1.4
+  );
+
   width: 100%;
   height: 100%;
+
+  font-family: var(--font-second);
 }
 
 .pagination li.active {
-  border: 0.75px solid #080808;
+  border: 0.75px solid var(--color-primary);
 }
 
 .paginateArrow {
@@ -74,10 +97,12 @@
 }
 
 .disabled {
-  background-color: #a2a2a2;
-  opacity: 0.5;
-  pointer-events: none;
+  background-color: var(--color-text-muted);
+
   cursor: default;
+  pointer-events: none;
+
+  opacity: 0.5;
 }
 
 .pagination li.disabled .paginateArrow {

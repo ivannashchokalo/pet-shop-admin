@@ -12,7 +12,7 @@ export interface Animal {
   createdAt: string;
 }
 
-export type CreateNewAnimal = Pick<Animal, "name" | "type" | "breed" | "sex"> &
+export type CreateAnimalData = Pick<Animal, "name" | "type" | "breed" | "sex"> &
   Partial<
     Omit<Animal, "_id" | "createdAt" | "name" | "type" | "breed" | "sex">
   >;

@@ -1,31 +1,44 @@
-@use "../../styles" as *;
+@use "../../styles/abstracts" as abs;
 
 .searchForm {
-  @include flex-center(null);
+  @include abs.flex-center(null);
 }
 
 .formLabel {
   position: relative;
-  margin-right: 8px;
+
   width: 302px;
   height: 40px;
+
+  margin-right: 8px;
 }
 
 .formInput {
-  @include fonts($fw: 500);
+  @include abs.fonts($fw: 500, $color: var(--color-text));
+
   width: 100%;
-  border: 1px solid #c0c0c0;
-  border-radius: 8px;
+
   padding: 8px 10px 8px 38px;
+
+  border: 1px solid var(--color-border);
+  border-radius: abs.$radius-sm;
+
   outline: none;
+
+  background-color: var(--color-background);
+
+  transition: abs.$transition;
 }
 
 .placeholderIcon {
   position: absolute;
-  left: 10px;
   top: 50%;
+  left: 10px;
+
   transform: translateY(-50%);
-  fill: #c0c0c0;
+
+  fill: var(--color-border);
+
   pointer-events: none;
 }
 
@@ -33,9 +46,13 @@
   position: absolute;
   top: 50%;
   right: 10px;
-  transform: translateY(-50%);
-  background-color: transparent;
+
   border: none;
+
+  background-color: transparent;
+
+  transform: translateY(-50%);
+
   line-height: 0;
 
   &:hover .searchCrossIcon {
@@ -44,10 +61,15 @@
 }
 
 .searchCrossIcon {
-  fill: #4d4d4d;
-  transition: all 200ms ease;
+  fill: var(--color-text-secondary);
+
+  transition: abs.$transition;
 }
 
 .formSubmitBtn {
-  @include button(#a2a2a2, #757575, #4d4d4d);
+  @include abs.button(
+    var(--color-text-muted),
+    var(--color-text-secondary),
+    var(--color-primary-active)
+  );
 }

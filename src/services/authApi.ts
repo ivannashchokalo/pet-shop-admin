@@ -1,16 +1,16 @@
 // імпортуємо базовий API
-import type { User } from "../types/user";
+import type { AuthData, User } from "../types/user";
 import { baseApi } from "./baseApi";
 
 // "розширюємо" api новими endpoints
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation({
+    login: builder.mutation<User, AuthData>({
       // mutation = зміна даних (POST, PATCH, DELETE)
-      query: (data) => ({
+      query: (body) => ({
         url: "/auth/admin/login", // endpoint
         method: "POST", // HTTP метод
-        body: data, // тіло запиту (email, password)
+        body, // тіло запиту (email, password)
       }),
 
       // після логіну кеш auth застаріває → треба оновити

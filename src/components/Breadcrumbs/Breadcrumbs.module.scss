@@ -1,27 +1,33 @@
-@use "../../styles/" as *;
+@use "../../styles/abstracts" as abs;
 
 .breadcrumb {
-  @include flex-center(null);
+  @include abs.flex-center(null);
+
   gap: 8px;
 }
 
 .breadcrumbIcon {
-  fill: #222;
+  fill: var(--color-primary);
 }
 
 .element {
-  @include flex-center(null);
-  @include fonts($fs: 14px, $color: #a2a2a2);
+  @include abs.flex-center(null);
+
+  @include abs.fonts($fs: 14px, $color: var(--color-text-muted));
+
   gap: 8px;
+
   text-align: center;
 }
 
 .lastElement {
-  @include fonts(12px);
+  @include abs.fonts($fs: 12px, $color: var(--color-text));
+
   text-align: center;
 }
 
 .firstLink {
-  @include flex-center(null);
+  @include abs.flex-center(null);
+
   gap: 8px;
 }

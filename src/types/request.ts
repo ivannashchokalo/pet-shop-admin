@@ -8,7 +8,7 @@ export interface Request {
   status: "new" | "contacted" | "closed";
 }
 
-export type UpdateRequest = { _id: Request["_id"] } & Partial<
+export type UpdateRequestData = { _id: Request["_id"] } & Partial<
   Omit<Request, "_id">
 >;
 

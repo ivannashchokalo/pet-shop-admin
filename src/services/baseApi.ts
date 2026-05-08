@@ -5,8 +5,10 @@ import type {
 } from "@reduxjs/toolkit/query";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:3000",
+  baseUrl: API_URL,
   credentials: "include",
 });
 

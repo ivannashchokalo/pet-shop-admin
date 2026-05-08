@@ -1,7 +1,7 @@
-@use "../../styles" as *;
+@use "../../styles/abstracts" as abs;
 
 .panel {
-  @include flex-center(space-between);
+  @include abs.flex-center(space-between);
 }
 
 .filters {

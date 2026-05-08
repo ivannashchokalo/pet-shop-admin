@@ -1,9 +1,11 @@
-@use "../../styles/" as *;
+@use "../../styles/abstracts" as abs;
 
 .signInContainer {
-  @include flex-column(20px);
+  @include abs.flex-column(20px);
+
   align-items: center;
 }
+
 .wrapper {
   display: flex;
   align-items: center;
@@ -11,9 +13,9 @@
 }
 
 .logoIcon {
-  fill: #000;
+  fill: var(--color-text);
 }
 
 .title {
-  @include fonts($fs: 32px, $fw: 600);
+  @include abs.fonts($fs: 32px, $fw: 600, $color: var(--color-text));
 }

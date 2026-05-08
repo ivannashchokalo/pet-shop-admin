@@ -1,24 +1,26 @@
-@use "../../styles/" as *;
+@use "../../styles/abstracts" as abs;
 
 .btnsList {
-  @include flex-center(null);
+  @include abs.flex-center(null);
+
   gap: 4px;
+
   margin-bottom: 8px;
 }
 
 .btnsItem:not(:first-child) button {
-  @include button(
+  @include abs.button(
     transparent,
-    rgba(192, 192, 192, 0.1),
-    rgba(192, 192, 192, 0.4),
-    #222,
-    0.5px solid #222,
+    rgb(192 192 192 / 10%),
+    rgb(192 192 192 / 40%),
+    var(--color-primary),
+    0.5px solid var(--color-primary),
     14px
   );
 }
 
 .deleteBtn {
-  @include button(
+  @include abs.button(
     $bg-color: #d9d9d9,
     $bg-hover: #c0c0c0,
     $bg-active: #a2a2a2,
@@ -28,80 +30,82 @@
 }
 
 .modalTitle {
-  @include fonts(24px, 600, #000, 1);
-  margin-bottom: 16px;
+  @include abs.fonts($fs: 24px, $fw: 600, $color: var(--color-text), $lh: 1);
+
+  margin-bottom: 8px;
+
+  text-align: center;
 }
 
 .modalText {
-  @include fonts(14px, 500, #757575); //   margin-top: auto;
+  @include abs.fonts($fs: 14px, $fw: 500, $color: var(--color-text-secondary));
+
+  margin-bottom: 32px;
+
+  text-align: center;
 }
 
 .modalCloseBtn {
-  @include button;
+  @include abs.button;
+
   margin-top: auto;
 }
 
 .viewDetailsBtn {
-  @include button(
+  @include abs.button(
     transparent,
-    rgba(192, 192, 192, 0.1),
-    rgba(192, 192, 192, 0.4),
-    #222,
-    0.5px solid #222,
+    rgb(192 192 192 / 10%),
+    rgb(192 192 192 / 40%),
+    var(--color-primary),
+    0.5px solid var(--color-primary),
     14px
   );
 }
 
 .viewDetailsBtn:disabled {
-  opacity: 0.5;
   cursor: not-allowed;
+
+  opacity: 0.5;
 }
 
 //========== delete modal
 
 .modalIcon {
   margin-bottom: 16px;
-  fill: #d60000;
-}
 
-.modalTitle {
-  @include fonts(24px, 600, #000, 1);
-  margin-bottom: 8px;
-  text-align: center;
-}
-
-.modalText {
-  @include fonts(14px, 500, #757575);
-  margin-bottom: 32px;
-  text-align: center;
+  fill: var(--color-danger);
 }
 
 .modalBtnsWrapper {
-  @include flex-center(space-evenly);
+  @include abs.flex-center(space-evenly);
+
   width: 100%;
 }
 
 .modalBtnCancel {
-  @include button(#d9d9d9, #c0c0c0, #a2a2a2, #353535);
+  @include abs.button(#d9d9d9, #c0c0c0, #a2a2a2, #353535);
 }
 
 .modalBtnDelete {
-  @include button(#d60000, #b31a1a, #7d1313);
+  @include abs.button(var(--color-danger), #b31a1a, #7d1313);
 }
 
 .ag-theme-alpine {
-  @include border;
-  --ag-font-family: #{$font-family};
+  @include abs.border;
+
+  --ag-font-family: var(--font-main);
   --ag-row-height: 60px;
+
   padding: 0;
 
   .ag-header {
-    @include fonts($fw: 600);
-    background-color: #f5f5f5;
+    @include abs.fonts($fw: 600, $color: var(--color-text));
+
+    background-color: var(--color-background-secondary);
   }
 
   .ag-column-first {
-    @include flex-center;
+    @include abs.flex-center;
   }
 
   .ag-header-cell-label {
@@ -109,7 +113,8 @@
   }
 
   .ag-cell {
-    @include flex-center;
-    @include fonts(14px);
+    @include abs.flex-center;
+
+    @include abs.fonts($fs: 14px, $color: var(--color-text));
   }
 }
