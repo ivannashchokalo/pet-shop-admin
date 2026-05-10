@@ -1,38 +1,51 @@
 import AnimalsList from "../../components/AnimalsList/AnimalsList";
 import FilterPanel from "../../components/FilterPanel/FilterPanel";
-import ReactPaginate from "react-paginate";
 import { Toaster } from "react-hot-toast";
 import { Link, useLocation, useSearchParams } from "react-router";
+
 import styles from "./AnimalsPage.module.scss";
+
 import Icon from "../../components/Icon/Icon";
 import Container from "../../components/Container/Container";
 import Section from "../../components/Section/Section";
+import Pagination from "../../components/Pagination/Pagination";
+
 import { useGetAnimalsQuery } from "../../services/animalsApi";
+
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 export default function Animals() {
   const [searchParams, setSearchParams] = useSearchParams();
+
   const search = searchParams.get("search") || "";
   const type = searchParams.get("type") || "";
   const status = searchParams.get("status") || "";
   const page = Number(searchParams.get("page")) || 1;
+
   const location = useLocation();
+
   const { data, isLoading, isError } = useGetAnimalsQuery({
     page,
     search,
     type,
     status,
   });
+
+  const totalPages = data?.totalPages ?? 0;
+
   const handlePageChange = ({ selected }: { selected: number }) => {
     const params = new URLSearchParams(searchParams);
+
     params.set("page", String(selected + 1));
+
     setSearchParams(params);
   };
 
   return (
     <Section>
       <Container>
+        <Toaster />
         <div className={styles.wrapper}>
           <h1 className={styles.title}>
             Animals
@@ -49,7 +62,6 @@ export default function Animals() {
             Add animal
           </Link>
         </div>
-        <Toaster />
         <div className={styles.filter}>
           <FilterPanel />
         </div>
@@ -60,24 +72,11 @@ export default function Animals() {
             <AnimalsList animals={data.animals} />
           )}
         </div>
-        {(data?.totalPages ?? 0) > 1 && (
-          <ReactPaginate
-            pageCount={data?.totalPages ?? 0}
+        {totalPages > 1 && (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={page}
             onPageChange={handlePageChange}
-            forcePage={page - 1}
-            pageRangeDisplayed={5}
-            marginPagesDisplayed={2}
-            previousLabel={
-              <Icon name="arrow-l" size={24} className={styles.paginateArrow} />
-            }
-            nextLabel={
-              <Icon name="arrow-r" size={24} className={styles.paginateArrow} />
-            }
-            breakLabel="..."
-            renderOnZeroPageCount={null}
-            containerClassName={styles.pagination}
-            activeClassName={styles.active}
-            disabledClassName={styles.disabled}
           />
         )}
       </Container>

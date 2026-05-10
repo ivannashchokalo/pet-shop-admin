@@ -18,11 +18,9 @@
   border-radius: abs.$radius-sm;
 
   background-color: var(--color-background-hover);
-
   cursor: pointer;
   text-align: center;
-
-  transition: abs.$transition;
+  transition: var(--transition);
 
   &:hover {
     background-color: var(--color-border);
@@ -33,15 +31,6 @@
   @include abs.flex-center(null);
 
   flex-direction: column;
-}
-
-.dropIcon {
-  margin-bottom: 20px;
-  padding: 10px;
-
-  border-radius: abs.$radius-sm;
-
-  background-color: var(--color-background);
 }
 
 .title {
@@ -56,6 +45,18 @@
   text-align: center;
 }
 
+.uploadIconWrapper {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: abs.$radius-sm;
+  background-color: var(--color-background-secondary);
+}
+
+.uploadIcon {
+  fill: transparent;
+  stroke-width: 2px;
+  stroke: var(--color-text);
+}
 .files {
   @include abs.fonts($fs: 15px, $color: var(--color-text-secondary));
 
@@ -110,5 +111,5 @@
 .deleteIcon {
   fill: var(--color-text-secondary);
 
-  transition: abs.$transition;
+  transition: var(--transition);
 }

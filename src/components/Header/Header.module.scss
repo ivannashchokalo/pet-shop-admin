@@ -37,8 +37,7 @@ header {
 
   padding: 10px 15px;
 
-  transition: abs.$transition;
-
+  transition: var(--transition);
   &:hover,
   &:focus-visible {
     border-radius: abs.$radius-sm;

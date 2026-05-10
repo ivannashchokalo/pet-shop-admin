@@ -31,9 +31,10 @@ export default function AnimalDetails() {
   const [updateAnimal] = useUpdateAnimalMutation();
 
   const handleDelete = async () => {
+    if (!id) return; // useParams() може повернути undefined, тому перевіряємо id перед запитом
+
     try {
       toast.loading("Deleting...");
-
       await deleteAnimal(id).unwrap();
 
       toast.dismiss(); //закриває попередній toast
@@ -47,13 +48,18 @@ export default function AnimalDetails() {
   };
 
   const handleUpdateStatus = async (status: string) => {
-    // if (!id) return;
+    if (!id) return;
+
     try {
       toast.loading("Updating...");
 
+      const formData = new FormData();
+
+      formData.append("status", status);
+
       await updateAnimal({
         id,
-        body: { status },
+        formData,
       }).unwrap();
 
       toast.dismiss();
@@ -82,6 +88,7 @@ export default function AnimalDetails() {
             />
 
             <button
+              aria-label="Edit animal"
               className={styles.editBtn}
               onClick={() =>
                 navigate("edit", {

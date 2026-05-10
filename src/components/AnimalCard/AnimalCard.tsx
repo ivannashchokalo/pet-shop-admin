@@ -18,6 +18,7 @@ export default function AnimalCard({ animal }: AnimalCardProps) {
             src={animal?.images[0] || DEFAULT_PET}
             alt={animal.name}
             className={styles.animalImg}
+            loading="lazy"
           />
         </div>
         <div className={styles.animalCardContent}>

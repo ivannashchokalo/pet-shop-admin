@@ -8,17 +8,18 @@
   display: flex;
   flex-direction: column;
 
-  @if $gap!=null {
+  @if $gap != null {
     gap: $gap;
   }
 }
 
 @mixin button(
-  $bg-color: #222,
-  $bg-hover: #353535,
-  $bg-active: #4d4d4d,
-  $color: #fff,
+  $bg-color: var(--color-primary),
+  $bg-hover: var(--color-primary-hover),
+  $bg-active: var(--color-primary-active),
+  $color: var(--color-on-primary),
   $border: 0.5px solid transparent,
+
   $font-size: 16px
 ) {
   padding: 8px 22px;
@@ -31,7 +32,7 @@
   background-color: $bg-color;
   border-radius: 8px;
   border: $border;
-  transition: all 0.2s ease;
+  transition: var(--transition);
 
   &:hover,
   &:focus-visible {
@@ -45,16 +46,22 @@
 
 @mixin border($padding: 32px 24px) {
   padding: $padding;
-  border: 0.5px solid #c0c0c0;
+  border: 0.5px solid var(--color-border);
   border-radius: 24px;
 }
 
-@mixin fonts($fs: 16px, $fw: 400, $color: #222, $lh: 1.5, $ls: null) {
+@mixin fonts(
+  $fs: 16px,
+  $fw: 400,
+  $color: var(--color-text),
+  $lh: 1.5,
+  $ls: null
+) {
   font-size: $fs;
   font-weight: $fw;
   color: $color;
   line-height: $lh;
-  @if $ls!=null {
+  @if $ls != null {
     letter-spacing: $ls;
   }
 }

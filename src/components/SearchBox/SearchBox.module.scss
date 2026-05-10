@@ -27,7 +27,7 @@
 
   background-color: var(--color-background);
 
-  transition: abs.$transition;
+  transition: var(--transition);
 }
 
 .placeholderIcon {
@@ -63,7 +63,7 @@
 .searchCrossIcon {
   fill: var(--color-text-secondary);
 
-  transition: abs.$transition;
+  transition: var(--transition);
 }
 
 .formSubmitBtn {

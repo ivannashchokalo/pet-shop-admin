@@ -48,8 +48,7 @@
 
   background-color: var(--color-background);
 
-  transition: abs.$transition;
-
+  transition: var(--transition);
   &:focus {
     border-color: var(--color-text-muted);
   }
@@ -101,8 +100,7 @@
 
   cursor: pointer;
 
-  transition: abs.$transition;
-
+  transition: var(--transition);
   &:has(input:checked) {
     background-color: var(--color-primary);
     color: #fff;
@@ -141,8 +139,7 @@
 
   resize: none;
 
-  transition: abs.$transition;
-
+  transition: var(--transition);
   &:focus {
     border-color: var(--color-text-muted);
   }

@@ -27,8 +27,7 @@
 
   background-color: var(--color-background);
 
-  transition: abs.$transition;
-
+  transition: var(--transition);
   &:focus {
     border-color: var(--color-text-muted);
   }

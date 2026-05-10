@@ -22,12 +22,11 @@
     var(--color-primary-hover),
     var(--color-primary-active)
   );
-
   gap: 7px;
 }
 
 .plus {
-  fill: #fff;
+  fill: currentColor;
 }
 
 .filter {
@@ -36,75 +35,4 @@
 
 .animals {
   margin-bottom: 40px;
-}
-
-.pagination {
-  @include abs.flex-center(center, null);
-
-  gap: 8px;
-
-  margin: 0 auto;
-  padding: 0;
-
-  list-style: none;
-}
-
-.pagination li {
-  width: 32px;
-  height: 32px;
-
-  border-radius: abs.$radius-xs;
-}
-
-.pagination li:not(.disabled) {
-  border: 0.75px solid #dfe3e8;
-
-  background-color: var(--color-background);
-
-  cursor: pointer;
-
-  transition: abs.$transition;
-
-  &:hover,
-  &:focus-visible,
-  &:active {
-    border-color: var(--color-primary);
-  }
-}
-
-.pagination a {
-  @include abs.flex-center;
-
-  @include abs.fonts(
-    $fs: 14px,
-    $fw: 700,
-    $color: var(--color-primary),
-    $lh: 1.4
-  );
-
-  width: 100%;
-  height: 100%;
-
-  font-family: var(--font-second);
-}
-
-.pagination li.active {
-  border: 0.75px solid var(--color-primary);
-}
-
-.paginateArrow {
-  fill: #d9d9d9;
-}
-
-.disabled {
-  background-color: var(--color-text-muted);
-
-  cursor: default;
-  pointer-events: none;
-
-  opacity: 0.5;
-}
-
-.pagination li.disabled .paginateArrow {
-  fill: #d9d9d9;
 }

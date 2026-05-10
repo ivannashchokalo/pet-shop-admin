@@ -95,18 +95,13 @@ export default function DropzoneField({
 
   return (
     <div className={styles.wrapper}>
-      {/*  Dropzone*/}
       <div {...getRootProps()} className={styles.dropZone}>
         <input {...getInputProps({ id })} />
 
         <div className={styles.content}>
-          <img
-            src="/upload.svg"
-            alt="Drop zone icon"
-            width={52}
-            height={52}
-            className={styles.dropIcon}
-          />
+          <div className={styles.uploadIconWrapper}>
+            <Icon name="upload" size={30} className={styles.uploadIcon} />
+          </div>
 
           <p className={styles.title}>
             {isDragActive

@@ -96,12 +96,31 @@
   --ag-font-family: var(--font-main);
   --ag-row-height: 60px;
 
+  --ag-background-color: var(--color-background-secondary);
+  --ag-header-background-color: var(--color-background-secondary);
+  --ag-foreground-color: var(--color-text);
+  --ag-border-color: var(--color-border);
+
   padding: 0;
+
+  background-color: var(--color-background-secondary);
+
+  .ag-root-wrapper {
+    border-color: var(--color-border);
+  }
 
   .ag-header {
     @include abs.fonts($fw: 600, $color: var(--color-text));
 
-    background-color: var(--color-background-secondary);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .ag-row {
+    border-bottom: 1px solid var(--color-border);
+
+    &:hover {
+      background-color: var(--color-background-hover);
+    }
   }
 
   .ag-column-first {

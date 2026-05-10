@@ -60,7 +60,7 @@
 
   transform: translateY(-50%);
 
-  transition: abs.$transition;
+  transition: var(--transition);
 }
 
 .prevBtn {

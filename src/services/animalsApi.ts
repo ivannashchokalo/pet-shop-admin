@@ -1,9 +1,4 @@
-import type {
-  Animal,
-  AnimalId,
-  CreateAnimalData,
-  UpdateAnimalData,
-} from "../types/animal";
+import type { Animal, AnimalId } from "../types/animal";
 import { baseApi } from "./baseApi";
 
 interface GetAnimalsParams {
@@ -48,7 +43,7 @@ export const animalsApi = baseApi.injectEndpoints({
       providesTags: ["Animals"],
     }),
 
-    addAnimal: builder.mutation<Animal, CreateAnimalData>({
+    addAnimal: builder.mutation<Animal, FormData>({
       query: (body) => ({
         url: "/animals",
         method: "POST",
@@ -56,12 +51,13 @@ export const animalsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Animals"],
     }),
-    updateAnimal: builder.mutation<Animal, UpdateAnimalData>({
-      query: ({ id, ...body }) => ({
+    updateAnimal: builder.mutation<Animal, { id: string; formData: FormData }>({
+      query: ({ id, formData }) => ({
         url: `/animals/${id}`,
         method: "PATCH",
-        body,
+        body: formData,
       }),
+
       invalidatesTags: ["Animals"],
     }),
     deleteAnimal: builder.mutation<Animal, AnimalId>({

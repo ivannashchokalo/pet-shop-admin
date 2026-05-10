@@ -101,9 +101,13 @@ export default function EditAnimal() {
       formData.append("description", data.description);
     }
 
-    data.images.forEach((file) => {
-      formData.append("images", file);
-    });
+    if (data.images.length === 0) {
+      formData.append("images", "");
+    } else {
+      data.images.forEach((file) => {
+        formData.append("images", file);
+      });
+    }
 
     if (!id) return;
 
@@ -114,7 +118,7 @@ export default function EditAnimal() {
       }
       await updateAnimal({
         id,
-        body: formData,
+        formData,
       }).unwrap();
 
       toast.dismiss();

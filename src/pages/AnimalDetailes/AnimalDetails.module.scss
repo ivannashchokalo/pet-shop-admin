@@ -35,8 +35,7 @@
 
   background-color: transparent;
 
-  transition: abs.$transition;
-
+  transition: var(--transition);
   &:hover,
   &:focus-visible {
     color: #d93131;

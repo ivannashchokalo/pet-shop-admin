@@ -5,6 +5,7 @@ import Container from "../Container/Container";
 import toast from "react-hot-toast";
 import { authApi, useLogoutMutation } from "../../services/authApi";
 import { useDispatch } from "react-redux";
+import ThemeButton from "../ThemeButton/ThemeButton";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -98,6 +99,7 @@ export default function Header() {
               </li>
             </ul>
           </nav>
+          <ThemeButton />
           <button className={styles.logout} onClick={handleLogout}>
             Logout
           </button>
