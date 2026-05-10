@@ -2,13 +2,11 @@
 
 .wrapper {
   @include abs.flex-center(space-between, start);
-
   margin-bottom: 48px;
 }
 
 .title {
   @include abs.flex-column(8px);
-
   @include abs.fonts($fs: 32px, $fw: 600, $color: var(--color-text));
 }
 
@@ -35,4 +33,13 @@
 
 .animals {
   margin-bottom: 40px;
+}
+
+.emptyMessage {
+  padding: 48px 24px;
+  border: 1px dashed var(--color-border);
+  border-radius: 16px;
+  background-color: var(--color-background-secondary);
+  text-align: center;
+  @include abs.fonts($fs: 18px, $fw: 500, $color: var(--color-text-secondary));
 }

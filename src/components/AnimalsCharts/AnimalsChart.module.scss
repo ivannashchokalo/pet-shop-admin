@@ -6,7 +6,6 @@
 
 .listItem {
   @include abs.fonts($fs: 12px, $fw: 600, $color: var(--color-text));
-
   display: flex;
   gap: 8px;
 

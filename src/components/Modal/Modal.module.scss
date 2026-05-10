@@ -2,26 +2,18 @@
 
 .backdrop {
   @include abs.flex-center;
-
   position: fixed;
   inset: 0;
-
   z-index: 999;
-
   background-color: rgb(46 47 66 / 40%);
 }
 
 .modal {
   @include abs.flex-center(null);
-
   flex-direction: column;
-
   width: 376px;
   min-height: 254px;
-
   padding: 24px 40px;
-
   border-radius: abs.$radius-xl;
-
   background-color: var(--color-background);
 }

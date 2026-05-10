@@ -17,9 +17,19 @@ export default function AnimalsPieChart() {
     (animal) => animal.type === "cat",
   ).length;
 
+  const birdCount = availableAnimals.filter(
+    (animal) => animal.type === "bird",
+  ).length;
+
+  const rodentCount = availableAnimals.filter(
+    (animal) => animal.type === "rodent",
+  ).length;
+
   const data = [
     { type: "Dog", count: dogCount },
     { type: "Cat", count: catCount },
+    { type: "Bird", count: birdCount },
+    { type: "Rodent", count: rodentCount },
   ];
 
   const options: AgChartOptions = {
@@ -33,7 +43,7 @@ export default function AnimalsPieChart() {
         angleKey: "count",
         calloutLabelKey: "type",
         sectorLabelKey: "count",
-        fills: ["#4caf50", "#ffca28"],
+        fills: ["#4caf50", "#ffca28", "#42a5f5", "#ab47bc"],
       },
     ],
   };
@@ -44,13 +54,24 @@ export default function AnimalsPieChart() {
         <li className={styles.listItem}>
           Available animals:<span>{availableAnimals.length}</span>
         </li>
+
         <li className={styles.listItem}>
           Dog:<span>{dogCount}</span>
         </li>
+
         <li className={styles.listItem}>
           Cat:<span>{catCount}</span>
         </li>
+
+        <li className={styles.listItem}>
+          Bird:<span>{birdCount}</span>
+        </li>
+
+        <li className={styles.listItem}>
+          Rodent:<span>{rodentCount}</span>
+        </li>
       </ul>
+
       <AgCharts options={options} />
     </div>
   );

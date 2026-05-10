@@ -2,7 +2,6 @@
 
 .form {
   @include abs.border(30px 40px);
-
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -14,19 +13,13 @@
 
 .input {
   @include abs.fonts($fs: 14px, $color: var(--color-text));
-
   width: 400px;
   height: 40px;
-
   padding: 8px 10px;
-
   border: 1px solid var(--color-border);
   border-radius: abs.$radius-sm;
-
   outline: none;
-
   background-color: var(--color-background);
-
   transition: var(--transition);
   &:focus {
     border-color: var(--color-text-muted);
@@ -52,6 +45,5 @@
 
 .button {
   @include abs.button;
-
   align-self: center;
 }

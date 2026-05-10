@@ -2,7 +2,6 @@
 
 .breadcrumb {
   @include abs.flex-center(null);
-
   gap: 8px;
 }
 
@@ -12,22 +11,17 @@
 
 .element {
   @include abs.flex-center(null);
-
   @include abs.fonts($fs: 14px, $color: var(--color-text-muted));
-
   gap: 8px;
-
   text-align: center;
 }
 
 .lastElement {
   @include abs.fonts($fs: 12px, $color: var(--color-text));
-
   text-align: center;
 }
 
 .firstLink {
   @include abs.flex-center(null);
-
   gap: 8px;
 }

@@ -2,9 +2,7 @@
 
 .btnsList {
   @include abs.flex-center(null);
-
   gap: 4px;
-
   margin-bottom: 8px;
 }
 
@@ -31,17 +29,13 @@
 
 .modalTitle {
   @include abs.fonts($fs: 24px, $fw: 600, $color: var(--color-text), $lh: 1);
-
   margin-bottom: 8px;
-
   text-align: center;
 }
 
 .modalText {
   @include abs.fonts($fs: 14px, $fw: 500, $color: var(--color-text-secondary));
-
   margin-bottom: 32px;
-
   text-align: center;
 }
 
@@ -64,7 +58,6 @@
 
 .viewDetailsBtn:disabled {
   cursor: not-allowed;
-
   opacity: 0.5;
 }
 
@@ -72,13 +65,11 @@
 
 .modalIcon {
   margin-bottom: 16px;
-
   fill: var(--color-danger);
 }
 
 .modalBtnsWrapper {
   @include abs.flex-center(space-evenly);
-
   width: 100%;
 }
 
@@ -102,16 +93,13 @@
   --ag-border-color: var(--color-border);
 
   padding: 0;
-
   background-color: var(--color-background-secondary);
-
   .ag-root-wrapper {
     border-color: var(--color-border);
   }
 
   .ag-header {
     @include abs.fonts($fw: 600, $color: var(--color-text));
-
     border-bottom: 1px solid var(--color-border);
   }
 
@@ -133,7 +121,6 @@
 
   .ag-cell {
     @include abs.flex-center;
-
     @include abs.fonts($fs: 14px, $color: var(--color-text));
   }
 }

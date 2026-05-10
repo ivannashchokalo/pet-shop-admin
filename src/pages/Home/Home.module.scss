@@ -2,7 +2,6 @@
 
 .title {
   @include abs.fonts($fs: 32px, $fw: 600, $color: var(--color-text));
-
   margin-bottom: 48px;
 }
 
@@ -19,6 +18,5 @@
 
 .listTitle {
   @include abs.fonts($fs: 24px, $fw: 600, $color: var(--color-text));
-
   text-align: center;
 }

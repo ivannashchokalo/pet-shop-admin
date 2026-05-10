@@ -2,7 +2,6 @@
 
 .wrapper {
   position: relative;
-
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -10,18 +9,14 @@
 
 .dropZone {
   @include abs.flex-center;
-
   width: 100%;
   height: 208px;
-
   border: 1px solid var(--color-border);
   border-radius: abs.$radius-sm;
-
   background-color: var(--color-background-hover);
   cursor: pointer;
   text-align: center;
   transition: var(--transition);
-
   &:hover {
     background-color: var(--color-border);
   }
@@ -29,19 +24,16 @@
 
 .content {
   @include abs.flex-center(null);
-
   flex-direction: column;
 }
 
 .title {
   @include abs.fonts($fw: 500, $color: var(--color-text));
-
   margin-bottom: 5px;
 }
 
 .subtitle {
   @include abs.fonts($fs: 15px, $color: var(--color-text-secondary));
-
   text-align: center;
 }
 
@@ -59,7 +51,6 @@
 }
 .files {
   @include abs.fonts($fs: 15px, $color: var(--color-text-secondary));
-
   margin-top: 10px;
 }
 
@@ -67,7 +58,6 @@
   position: absolute;
   bottom: -60px;
   left: 0;
-
   display: flex;
   gap: 4px;
 }
@@ -75,29 +65,22 @@
 .imgWrapper {
   width: 30px;
   height: 30px;
-
   overflow: hidden;
-
   border-radius: abs.$radius-sm;
 }
 
 .previewImage {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
 }
 
 .removeBtn {
   width: 20px;
   height: 20px;
-
   border: none;
-
   background-color: transparent;
-
   line-height: 0;
-
   &:hover .deleteIcon,
   &:focus-visible .deleteIcon {
     opacity: 0.5;
@@ -110,6 +93,5 @@
 
 .deleteIcon {
   fill: var(--color-text-secondary);
-
   transition: var(--transition);
 }

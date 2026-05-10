@@ -65,9 +65,12 @@ export default function Animals() {
         <div className={styles.filter}>
           <FilterPanel />
         </div>
-        {isLoading && <Loader />}
-        {isError && <ErrorMessage />}
         <div className={styles.animals}>
+          {isLoading && <Loader />}
+          {isError && <ErrorMessage />}
+          {!isLoading && !isError && data?.animals?.length === 0 && (
+            <p className={styles.emptyMessage}>No animals found.</p>
+          )}
           {data?.animals && data.animals.length > 0 && (
             <AnimalsList animals={data.animals} />
           )}

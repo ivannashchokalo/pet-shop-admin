@@ -2,21 +2,17 @@
 
 .btnsWrapper {
   @include abs.flex-center(null);
-
   margin-bottom: 48px;
 }
 
 .changeBtnWrapper {
   @include abs.flex-center;
-
   gap: 16px;
-
   margin-left: auto;
 }
 
 .editBtn {
   @include abs.button;
-
   gap: 4px;
 }
 
@@ -26,15 +22,10 @@
 
 .deleteBtn {
   @include abs.fonts($fs: 16px, $fw: 600, $color: var(--color-danger));
-
   align-self: start;
-
   padding: 8px 5px;
-
   border: none;
-
   background-color: transparent;
-
   transition: var(--transition);
   &:hover,
   &:focus-visible {
@@ -48,7 +39,6 @@
 
 .detailsWrapper {
   @include abs.border;
-
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 54px;
@@ -58,11 +48,8 @@
 .animalImgWrapper {
   width: 100%;
   height: 500px;
-
   overflow: hidden;
-
   border-radius: abs.$radius-md;
-
   background-color: var(--color-background-secondary);
 }
 
@@ -119,12 +106,9 @@
 
 .badge {
   @include abs.flex-center;
-
   @include abs.fonts($fs: 14px, $fw: 500, $color: #fff, $ls: 0.01em);
-
   width: 110px;
   height: 27px;
-
   border-radius: abs.$radius-sm;
 }
 
@@ -157,29 +141,23 @@
 
 .modalIcon {
   margin-bottom: 16px;
-
   fill: var(--color-danger);
 }
 
 .modalTitle {
   @include abs.fonts($fs: 24px, $fw: 600, $color: var(--color-text), $lh: 1);
-
   margin-bottom: 8px;
-
   text-align: center;
 }
 
 .modalText {
   @include abs.fonts($fs: 14px, $fw: 500, $color: var(--color-text-secondary));
-
   margin-bottom: 32px;
-
   text-align: center;
 }
 
 .modalBtnsWrapper {
   @include abs.flex-center(space-evenly);
-
   width: 100%;
 }
 
