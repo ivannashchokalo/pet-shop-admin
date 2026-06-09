@@ -28,7 +28,7 @@ export interface UpdateAnimalForm {
 }
 
 export default function EditAnimal() {
-  const { id } = useParams();
+  const { id = "" } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const { data } = useGetAnimalByIdQuery(id);

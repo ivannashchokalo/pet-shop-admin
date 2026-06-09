@@ -20,11 +20,10 @@ import Slider from "../../components/Swiper/Swiper";
 import AnimalStatusSelect from "../../components/AnimalStatusSelect/AnimalStatusSelect";
 
 export default function AnimalDetails() {
-  const { id } = useParams();
+  const { id = "" } = useParams(); // id = ""  ?????????
   const navigate = useNavigate();
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const location = useLocation();
-  // const queryClient = useQueryClient();
 
   const { data, isLoading, isError } = useGetAnimalByIdQuery(id);
   const [deleteAnimal] = useDeleteAnimalMutation();
