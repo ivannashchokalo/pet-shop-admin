@@ -24,17 +24,14 @@ export default function DropzoneField({
   setError,
   clearErrors,
 }: DropzoneFieldProps) {
-  // Максимальна кількість фото
   const MAX_FILES = 5;
 
-  // Видалення картинки
   const handleRemove = (indexToRemove: number) => {
     const updatedFiles = value.filter((_, index) => index !== indexToRemove);
 
     onChange(updatedFiles);
   };
 
-  // Dropzone
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     multiple: true,
 
@@ -43,11 +40,9 @@ export default function DropzoneField({
       "image/*": [],
     },
 
-    // максимальний розмір одного файлу
     maxSize: MAX_SIZE,
 
     onDrop: (acceptedFiles, rejectedFiles) => {
-      // Validation rejected files
       if (rejectedFiles.length > 0) {
         rejectedFiles.forEach((file) => {
           file.errors.forEach((error) => {
@@ -68,7 +63,6 @@ export default function DropzoneField({
         });
       }
 
-      // Validation max amount
       const updatedFiles = [...value, ...acceptedFiles];
 
       if (updatedFiles.length > MAX_FILES) {
@@ -80,15 +74,12 @@ export default function DropzoneField({
         return;
       }
 
-      // Якщо rejected files є
       if (rejectedFiles.length > 0) {
         return;
       }
 
-      // Очистка старих помилок
       clearErrors("images");
 
-      // Додаємо файли
       onChange(updatedFiles);
     },
   });
@@ -113,12 +104,9 @@ export default function DropzoneField({
         </div>
       </div>
 
-      {/*Preview картинок */}
       {value.length > 0 && (
         <ul className={styles.fileList}>
           {value.map((file, index) => {
-            // Якщо File -> createObjectURL
-            // Якщо string -> URL з backend
             const imageSrc =
               file instanceof File ? URL.createObjectURL(file) : file;
 

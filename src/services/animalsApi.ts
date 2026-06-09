@@ -16,8 +16,6 @@ interface GetAnimalsResponse {
   animals: Animal[];
 }
 
-//builder.mutation<ResponseType, RequestType>
-
 export const animalsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAnimals: builder.query<GetAnimalsResponse, GetAnimalsParams | void>({
@@ -28,9 +26,9 @@ export const animalsApi = baseApi.injectEndpoints({
           url: "/animals",
           params: {
             page,
-            search,
-            type,
-            status,
+            ...(search && { search }),
+            ...(type && { type }),
+            ...(status && { status }),
             perPage: 12,
           },
         };

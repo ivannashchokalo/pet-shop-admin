@@ -24,7 +24,7 @@ export default function SignInForm() {
       await login({
         email,
         password,
-      }).unwrap(); //перетворює результат RTK Query у нормальний Promise, ане special RTK object.
+      }).unwrap();
 
       navigate("/");
     } catch (err) {

@@ -16,21 +16,13 @@ export default function Header() {
     try {
       await logout().unwrap();
 
-      dispatch(authApi.util.resetApiState()); // очищає все(кеш), аналогія queryClient.removeQueries({ queryKey: ["user"] });
+      dispatch(authApi.util.resetApiState());
 
       navigate("/sign-in");
-    } catch (error) {
+    } catch {
       toast.error("Logout failed");
     }
   };
-  // const mutation = useMutation({
-  //   mutationFn: logout,
-  //   onSuccess: () => {
-  //     queryClient.removeQueries({ queryKey: ["user"] });
-  //     navigate("/sign-in");
-  //   },
-  //   onError: (error: Error) => toast.error(error.message),
-  // });
 
   return (
     <header>
@@ -93,7 +85,7 @@ export default function Header() {
                     size={20}
                     className={styles.navListIcon}
                     name="settings"
-                  />{" "}
+                  />
                   Settings
                 </NavLink>
               </li>

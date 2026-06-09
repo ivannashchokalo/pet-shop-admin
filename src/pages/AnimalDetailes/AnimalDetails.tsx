@@ -37,7 +37,7 @@ export default function AnimalDetails() {
       toast.loading("Deleting...");
       await deleteAnimal(id).unwrap();
 
-      toast.dismiss(); //закриває попередній toast
+      toast.dismiss();
       toast.success("Deleted");
 
       navigate("/animals");

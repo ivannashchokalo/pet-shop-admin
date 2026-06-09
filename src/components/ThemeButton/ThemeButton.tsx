@@ -6,8 +6,7 @@ import Icon from "../Icon/Icon";
 import styles from "./ThemeButton.module.scss";
 
 export default function ThemeButton() {
-  const dispatch = useDispatch<AppDispatch>(); // функція, яка відправляє actions у Redux
-
+  const dispatch = useDispatch<AppDispatch>();
   const theme = useSelector((state: RootState) => state.theme.mode);
 
   useEffect(() => {

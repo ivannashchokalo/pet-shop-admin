@@ -154,7 +154,6 @@ export default function EditAnimal() {
                   <label className={styles.inputLabel} htmlFor="name">
                     Name<span className={styles.star}>*</span>
                   </label>
-
                   <input
                     className={styles.input}
                     type="text"

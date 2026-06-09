@@ -8,7 +8,7 @@ import clsx from "clsx";
 export default function DropdownIndicator(
   props: DropdownIndicatorProps<OptionType, false>,
 ) {
-  const { menuIsOpen } = props.selectProps; // об’єкт props від react-select
+  const { menuIsOpen } = props.selectProps;
 
   return (
     <components.DropdownIndicator {...props}>
