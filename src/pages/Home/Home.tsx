@@ -3,8 +3,8 @@ import AnimalsStatusDonutChart from "../../components/AnimalsCharts/AnimalsStatu
 import Container from "../../components/Container/Container";
 import RequestsChart from "../../components/RequestsCharts/RequestsChart";
 import Section from "../../components/Section/Section";
-import WeeklyRequestsChart from "../../components/RequestsCharts/MonthlyRequestsChart";
 import styles from "./Home.module.scss";
+import MonthlyRequestsChart from "../../components/RequestsCharts/MonthlyRequestsChart";
 
 export default function Home() {
   return (
@@ -20,7 +20,7 @@ export default function Home() {
           <li className={styles.listItem}>
             <h2 className={styles.listTitle}>Requests</h2>
             <RequestsChart />
-            <WeeklyRequestsChart />
+            <MonthlyRequestsChart />
           </li>
         </ul>
       </Container>

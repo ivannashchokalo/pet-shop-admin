@@ -29,5 +29,11 @@
 
 .monthlyReqTitle {
   @include abs.fonts($fs: 18px, $fw: 600, $color: var(--color-text));
-  margin-bottom: 50px;
+}
+
+.monthlyReqWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

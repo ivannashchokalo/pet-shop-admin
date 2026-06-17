@@ -151,6 +151,25 @@ export default function EditAnimal() {
             <form className={styles.addForm} onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <div className={styles.inputWrapper}>
+                  <legend className={styles.inputLabel}>
+                    Animal Type<span className={styles.star}>*</span>
+                  </legend>
+                  <Controller
+                    name="type"
+                    control={control}
+                    rules={{ required: "Select type of animal" }}
+                    render={({ field }) => (
+                      <AnimalTypeSelect
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
+                    )}
+                  />
+                  {errors.type && (
+                    <p className={styles.errorText}>{errors.type.message}</p>
+                  )}
+                </div>
+                <div className={styles.inputWrapper}>
                   <label className={styles.inputLabel} htmlFor="name">
                     Name<span className={styles.star}>*</span>
                   </label>
@@ -168,25 +187,6 @@ export default function EditAnimal() {
 
                   {errors.name && (
                     <p className={styles.errorText}>{errors.name.message}</p>
-                  )}
-                </div>
-                <div className={styles.inputWrapper}>
-                  <legend className={styles.inputLabel}>
-                    Animal Type<span className={styles.star}>*</span>
-                  </legend>
-                  <Controller
-                    name="type"
-                    control={control}
-                    rules={{ required: "Select type of animal" }}
-                    render={({ field }) => (
-                      <AnimalTypeSelect
-                        value={field.value}
-                        onChange={field.onChange}
-                      />
-                    )}
-                  />
-                  {errors.type && (
-                    <p className={styles.errorText}>{errors.type.message}</p>
                   )}
                 </div>
                 <div className={styles.inputWrapper}>

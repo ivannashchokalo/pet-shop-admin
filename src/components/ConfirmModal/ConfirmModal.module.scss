@@ -17,3 +17,21 @@
 
   margin-top: auto;
 }
+
+.modalIcon {
+  margin-bottom: 16px;
+  fill: var(--color-danger);
+}
+
+.modalBtnsWrapper {
+  @include abs.flex-center(space-evenly);
+  width: 100%;
+}
+
+.modalBtnCancel {
+  @include abs.button(#d9d9d9, #c0c0c0, #a2a2a2, #353535);
+}
+
+.modalBtnDelete {
+  @include abs.button(var(--color-danger), #b31a1a, #7d1313);
+}

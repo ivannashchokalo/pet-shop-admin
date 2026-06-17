@@ -1,7 +1,7 @@
 import { AgCharts } from "ag-charts-react";
 import type { AgChartOptions } from "ag-charts-community";
 import { useGetRequestsQuery } from "../../services/requestsApi";
-import syles from "./RequestsChart.module.scss";
+import styles from "./RequestsChart.module.scss";
 
 export default function MonthlyRequestsChart() {
   const { data: requests } = useGetRequestsQuery();
@@ -59,8 +59,8 @@ export default function MonthlyRequestsChart() {
   };
 
   return (
-    <div>
-      <h3 className={syles.monthlyReqTitle}>Monthly requests trend</h3>
+    <div className={styles.monthlyReqWrapper}>
+      <h3 className={styles.monthlyReqTitle}>Monthly requests trend</h3>
       <AgCharts options={options} />
     </div>
   );

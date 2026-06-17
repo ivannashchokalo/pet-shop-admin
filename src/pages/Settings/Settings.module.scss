@@ -1,0 +1,11 @@
+@use "../../styles/abstracts" as abs;
+
+.info {
+  @include abs.fonts($color: var(--color-text-secondary));
+
+  padding: 12px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: abs.$radius-sm;
+  background-color: var(--color-background-secondary);
+  text-align: center;
+}

@@ -16,6 +16,7 @@ import {
   CategoryAxisModule,
   NumberAxisModule,
 } from "ag-charts-community";
+import ThemeProvider from "./providers/ThemeProvider.ts";
 
 ModuleRegistry.registerModules([
   DonutSeriesModule,
@@ -31,6 +32,7 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+        <ThemeProvider />
         <App />
       </BrowserRouter>
     </Provider>

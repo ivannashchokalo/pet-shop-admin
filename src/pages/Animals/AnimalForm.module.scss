@@ -47,7 +47,7 @@
   }
 
   &::placeholder {
-    @include abs.fonts($fs: 12px, $color: var(--color-border));
+    @include abs.fonts($fs: 12px, $color: #c0c0c0);
   }
 }
 
@@ -74,7 +74,7 @@
 
 .sexLabel {
   @include abs.flex-center;
-  @include abs.fonts($fs: 14px, $fw: 500, $color: var(--color-border));
+  @include abs.fonts($fs: 14px, $fw: 500, $color: #c0c0c0);
   width: 140px;
   height: 37px;
   padding: 8px;
@@ -83,7 +83,7 @@
   cursor: pointer;
   transition: var(--transition);
   &:has(input:checked) {
-    background-color: var(--color-primary);
+    background-color: #222;
     color: #fff;
   }
 }
@@ -117,7 +117,7 @@
   }
 
   &::placeholder {
-    @include abs.fonts($fs: 14px, $color: var(--color-border));
+    @include abs.fonts($fs: 14px, $color: #c0c0c0);
   }
 }
 
