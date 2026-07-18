@@ -38,11 +38,6 @@
   );
 }
 
-.viewDetailsBtn:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
 .ag-theme-alpine {
   @include abs.border;
 

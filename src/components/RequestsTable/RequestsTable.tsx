@@ -16,7 +16,7 @@ import {
 import styles from "./RequestsTable.module.scss";
 import type { Request } from "../../types/request";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
-
+import { Link } from "react-router";
 interface RequestTableProps {
   data: Request[];
   onViewDetails: (message: string) => void;
@@ -53,6 +53,18 @@ export default function RequestsTable({
     },
     { field: "customerName", filter: true },
     { field: "phone" },
+    {
+      headerName: "Animal",
+      cellRenderer: (params: ICellRendererParams<Request>) => (
+        <Link
+          target="_blanck"
+          className={styles.viewDetailsBtn}
+          to={`/animals/${params.data?.animalId}`}
+        >
+          View animal
+        </Link>
+      ),
+    },
     {
       field: "status",
       sortable: true,
@@ -226,6 +238,15 @@ export default function RequestsTable({
     return gridRef.current.api.getSelectedRows();
   };
 
+  const handleSelectionChanged = () => {
+    if (!gridRef.current) return;
+
+    const selectedRows = gridRef.current.api.getSelectedRows();
+    console.log(selectedRows.length);
+
+    setSelectedCount(selectedRows.length);
+  };
+
   return (
     <>
       {isBulkDeleteOpen && (
@@ -243,6 +264,7 @@ export default function RequestsTable({
         <ul className={styles.btnsList}>
           <li className={styles.btnsItem}>
             <button
+              disabled={selectedCount === 0}
               className={styles.deleteBtn}
               onClick={() => {
                 const selectedRows = getSelectedRows();
@@ -261,10 +283,17 @@ export default function RequestsTable({
             </button>
           </li>
           <li className={styles.btnsItem}>
-            <button onClick={handleBulkContacted}>Mark as Contacted</button>
+            <button
+              onClick={handleBulkContacted}
+              disabled={selectedCount === 0}
+            >
+              Mark as Contacted
+            </button>
           </li>
           <li className={styles.btnsItem}>
-            <button onClick={handleBulkClosed}>Mark as Closed</button>
+            <button onClick={handleBulkClosed} disabled={selectedCount === 0}>
+              Mark as Closed
+            </button>
           </li>
         </ul>
         <div className={styles["ag-theme-alpine"]} style={{ height: 700 }}>
@@ -275,6 +304,7 @@ export default function RequestsTable({
             onCellValueChanged={handleValueChange}
             rowSelection={rowSelection}
             ref={gridRef}
+            onSelectionChanged={handleSelectionChanged}
           />
         </div>
       </AgGridProvider>
