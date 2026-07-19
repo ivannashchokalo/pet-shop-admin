@@ -30,6 +30,22 @@ The application provides administrators with a secure interface for managing ani
 
 ---
 
+> ⚠️ **Important**
+>
+> The Client and Admin Panel share the same authentication cookies.
+> When testing both applications at the same time, use different browser windows (Incognito or another browser) to avoid cookie conflicts.
+
+---
+
+
+## 🎥 Demo
+
+![Pet Shop Admin Demo](./screenshots/demo.gif)
+
+
+
+---
+
 ## ✨ Features
 
 ### 🐾 Animal Management
