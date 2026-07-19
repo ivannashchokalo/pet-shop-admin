@@ -20,10 +20,13 @@ The application provides administrators with a secure interface for managing ani
 
 ## 🔗 Related Repositories
 
-| Repository | Description |
-|------------|-------------|
-| **[Client App](https://github.com/ivannashchokalo/pet-shop-client)** | Customer-facing web application where users can browse animals, manage favorites, and submit reservation requests. |
-| **[REST API](https://github.com/ivannashchokalo/pet-shop-api)** | Backend service responsible for authentication, business logic, database operations, image uploads, and REST endpoints. |
+- 🌐 **Client App**  
+  Customer-facing web application where users can browse animals, manage favorites, and submit reservation requests.  
+  🔗 https://github.com/ivannashchokalo/pet-shop-client
+
+- ⚙️ **Backend API**  
+  Backend service responsible for authentication, business logic, database operations, image uploads, and REST endpoints.  
+  🔗 https://github.com/ivannashchokalo/pet-shop-api
 
 ---
 
@@ -127,85 +130,68 @@ Designed to simplify everyday administration.
 
 ### ⚛️ Core
 
-| Technology | Purpose |
-|------------|---------|
-| **React 19** | Building the user interface |
-| **TypeScript** | Static typing and improved developer experience |
-| **Vite** | Fast development server and optimized production builds |
+- **React 19** — Building the user interface
+- **TypeScript** — Static typing and improved developer experience
+- **Vite** — Fast development server and optimized production builds
 
 ---
 
 ### 🧭 Routing
 
-| Technology | Purpose |
-|------------|---------|
-| **React Router** | Client-side routing and protected routes |
+- **React Router** — Client-side routing and protected routes
 
 ---
 
 ### 📦 State Management & Server State
 
-| Technology | Purpose |
-|------------|---------|
-| **Redux Toolkit** | Global application state management |
-| **TanStack Query** | Server state management, caching, and asynchronous data fetching |
+- **Redux Toolkit** — Global application state management
+- **TanStack Query** — Server state management, caching, and asynchronous data fetching
 
 ---
 
 ### 🌐 API Communication
 
-| Technology | Purpose |
-|------------|---------|
-| **Axios** | HTTP client for communicating with the REST API |
+- **Axios** — HTTP client for communicating with the REST API
 
 ---
 
 ### 📝 Forms & Validation
 
-| Technology | Purpose |
-|------------|---------|
-| **React Hook Form** | Form state management |
-| **React Number Format** | Formatted numeric inputs |
-| **React DatePicker** | Date selection |
+- **React Hook Form** — Form state management
+- **React Number Format** — Formatted numeric inputs
+- **React DatePicker** — Date selection
 
 ---
 
 ### 🖼️ Media & UI Components
 
-| Technology | Purpose |
-|------------|---------|
-| **React Dropzone** | Drag & drop image uploads |
-| **Swiper** | Image gallery slider |
-| **React Select** | Custom select components |
-| **React Paginate** | Pagination |
-| **React Hot Toast** | Toast notifications |
+- **React Dropzone** — Drag & drop image uploads
+- **Swiper** — Image gallery slider
+- **React Select** — Custom select components
+- **React Paginate** — Pagination
+- **React Hot Toast** — Toast notifications
 
 ---
 
 ### 📊 Data Visualization
 
-| Technology | Purpose |
-|------------|---------|
-| **AG Charts** | Dashboard charts and analytics |
-| **AG Grid** | Interactive data tables |
+- **AG Charts** — Dashboard charts and analytics
+- **AG Grid** — Interactive data tables
 
 ---
 
 ### 🎨 Styling
 
-| Technology | Purpose |
-|------------|---------|
-| **Sass (SCSS)** | Component styling |
-| **clsx** | Conditional class names |
-| **modern-normalize** | Cross-browser style normalization |
+- **Sass (SCSS)** — Component styling
+- **clsx** — Conditional class names
+- **modern-normalize** — Cross-browser style normalization
 
 ---
 
 ### 🛠️ Development
 
-| Technology | Purpose |
-|------------|---------|
-| **ESLint** | Code quality and linting |
+- **ESLint** — Code quality and linting
+
 
 ---
 
@@ -320,11 +306,14 @@ Use the following credentials to sign in to the Admin Panel:
 
 ## 🚀 Deployment
 
-| Application | URL |
-|-------------|-----|
-| **Admin Panel** | https://pet-shop-admin-taupe.vercel.app |
-| **Client App** | https://pet-shop-client-five.vercel.app |
-| **REST API** | https://pet-shop-api-tmbd.onrender.com |
+- 👑 **Admin Panel**  
+  https://pet-shop-admin-taupe.vercel.app
+
+- 🌐 **Client App**  
+  https://pet-shop-client-five.vercel.app
+
+- ⚙️ **Backend API**  
+  https://pet-shop-api-tmbd.onrender.com
 
 
 ---

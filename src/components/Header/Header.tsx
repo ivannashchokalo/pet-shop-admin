@@ -74,21 +74,6 @@ export default function Header() {
                   Requests
                 </NavLink>
               </li>
-              <li className={styles.navListItem}>
-                <NavLink
-                  to="/settings"
-                  className={({ isActive }) =>
-                    `${styles.navListLink} ${isActive && styles.activeLink}`
-                  }
-                >
-                  <Icon
-                    size={20}
-                    className={styles.navListIcon}
-                    name="settings"
-                  />
-                  Settings
-                </NavLink>
-              </li>
             </ul>
           </nav>
           <ThemeButton />
