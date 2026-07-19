@@ -35,7 +35,6 @@ export default function DropzoneField({
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     multiple: true,
 
-    // тільки картинки
     accept: {
       "image/*": [],
     },

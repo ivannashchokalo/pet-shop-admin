@@ -44,7 +44,6 @@ export default function EditAnimal() {
     clearErrors,
   } = useForm<UpdateAnimalForm>({
     defaultValues: {
-      // defaultValues читаються лише ПІД ЧАС створення useForm, не при кожному render
       name: data?.name,
       type: data?.type,
       breed: data?.breed,
@@ -57,17 +56,8 @@ export default function EditAnimal() {
     mode: "onBlur",
   });
 
-  // Сторінка перезавантажилась
-  // Компонент реально монтується заново
-
-  // але defaultValues процюють не стабільно
-
-  // тому RHF docs рекомендують useEffect + reset
-
   useEffect(() => {
-    // кожного разу, коли приходить data, дані у формі оновлюються
     if (data) {
-      // У нашому випадку після перезавантаження сторінки форма не очищається
       reset({
         name: data.name,
         type: data.type,

@@ -8,23 +8,9 @@ export const store = configureStore({
     theme: themeReducer,
   },
 
-  middleware: (
-    getDefaultMiddleware, // getDefaultMiddleware - стандартні middleware Redux Toolkit
-  ) => getDefaultMiddleware().concat(baseApi.middleware), //baseApi.middleware -  додає middleware RTK Query (fetch, cache, refetch. loading, invalidation)
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(baseApi.middleware),
 });
 
-// RootState = тип усього Redux store
-
-// store.getState() повертає весь Redux state
-
-// ReturnType автоматично бере
-// тип того,
-// що повертає getState()
-
 export type RootState = ReturnType<typeof store.getState>;
-
-// AppDispatch = тип dispatch function
-
-// typeof бере тип store.dispatch
-
 export type AppDispatch = typeof store.dispatch;

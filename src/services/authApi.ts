@@ -1,7 +1,6 @@
 import type { AuthData, User } from "../types/user";
 import { baseApi } from "./baseApi";
 
-// "розширюємо" api новими endpoints
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation<User, AuthData>({
@@ -11,7 +10,6 @@ export const authApi = baseApi.injectEndpoints({
         body,
       }),
 
-      // після логіну кеш auth застаріває → треба оновити
       invalidatesTags: ["Auth"],
     }),
 

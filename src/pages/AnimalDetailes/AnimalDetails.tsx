@@ -30,7 +30,7 @@ export default function AnimalDetails() {
   const [updateAnimal] = useUpdateAnimalMutation();
 
   const handleDelete = async () => {
-    if (!id) return; // useParams() може повернути undefined, тому перевіряємо id перед запитом
+    if (!id) return;
 
     try {
       toast.loading("Deleting...");
