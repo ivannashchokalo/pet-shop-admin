@@ -9,12 +9,12 @@ The Admin Panel is one of three applications that make up the complete **Pet Sho
                         │
         ┌───────────────┼───────────────┐
         │               │               │
-🌐 Client App      🛠 REST API      👑 Admin Panel
+🌐 Client App     🛠 Backend API      👑 Admin Panel
      Next.js         Node.js            React
       React          Express       React Router
 ```
 
-The application provides administrators with a secure interface for managing animals, processing reservation requests, and monitoring platform activity. It consumes the REST API, while all business logic, authentication, and data persistence are handled by the backend.
+The application provides administrators with a secure interface for managing animals, processing reservation requests, and monitoring platform activity. It communicates with the backend through a REST API, while all business logic, authentication, and data persistence are handled by the backend.
 
 ---
 
@@ -254,7 +254,7 @@ Update the values if required.
 
 | Variable | Description |
 |----------|-------------|
-| `VITE_API_URL` | Base URL of the Pet Shop REST API. |
+| `VITE_API_URL` | Base URL of the Pet Shop Backend API. |
 
 
 ---
