@@ -9,42 +9,37 @@ The Admin Panel is one of three applications that make up the complete **Pet Sho
                         │
         ┌───────────────┼───────────────┐
         │               │               │
-🌐 Client App     🛠 Backend API      👑 Admin Panel
-     Next.js         Node.js            React
-      React          Express       React Router
+🌐 Client App     🛠 Backend API   👑 Admin Panel
+     Next.js         Node.js           React
+     React           Express        React Router
 ```
 
 The application provides administrators with a secure interface for managing animals, processing reservation requests, and monitoring platform activity. It communicates with the backend through a REST API, while all business logic, authentication, and data persistence are handled by the backend.
 
 ---
 
-## 🔗 Related Repositories
-
-- 🌐 **Client App**  
-  Customer-facing web application where users can browse animals, manage favorites, and submit reservation requests.  
-  🔗 https://github.com/ivannashchokalo/pet-shop-client
-
-- ⚙️ **Backend API**  
-  Backend service responsible for authentication, business logic, database operations, image uploads, and REST endpoints.  
-  🔗 https://github.com/ivannashchokalo/pet-shop-api
-
----
-
-> ⚠️ **Important**
->
-> The Client and Admin Panel share the same authentication cookies.
-> When testing both applications at the same time, use different browser windows (Incognito or another browser) to avoid cookie conflicts.
-
----
-
-
-## 🎥 Demo
+## 📸 Application Preview
 
 ![Pet Shop Admin Demo](./screenshots/demo.gif)
 
+---
 
+## 📝 About the Project
+
+The project demonstrates modern frontend development practices and includes:
+
+- ⚛️ React 19
+- 🧭 React Router
+- ⚡ TanStack Query
+- 📦 Redux Toolkit
+- 🌐 REST API Integration
+- 🔐 Session-based Authentication
+- 📊 AG Grid & AG Charts
+- 📋 React Hook Form
+- 🎨 Reusable UI Components
 
 ---
+
 
 ## ✨ Features
 
@@ -70,7 +65,7 @@ Quickly find the animals you need.
 - 🐶 Filter by animal type
 - 📌 Filter by reservation status
 - 📄 Server-side pagination
-- ➕ Quick access to the **Create Animal** page
+- ➕ Quick navigation to the Create Animal page
 
 ---
 
@@ -103,11 +98,11 @@ Process multiple reservation requests simultaneously.
 
 Monitor platform activity with interactive statistics and charts.
 
-- 🐾 Animal overview
-  - Total animals
-  - Available animals
-  - Reserved animals
-  - Sold animals
+- 🐾 Animal statistics
+  - Total
+  - Available
+  - Reserved
+  - Sold
 - 🥧 Animal type distribution
 - 📋 Reservation request overview
   - Total requests
@@ -142,6 +137,18 @@ Designed to simplify everyday administration.
 
 ---
 
+## 🔗 URL State Management
+
+The application keeps search filters, sorting, and pagination synchronized with the URL, allowing users to:
+
+- 🔗 Share filtered pages via URL
+- ↩️ Preserve state after page refresh
+- ⬅️ Use browser back and forward navigation seamlessly
+- 📄 Navigate directly to specific filtered views
+
+---
+
+
 ## 🛠️ Tech Stack
 
 ### ⚛️ Core
@@ -158,7 +165,7 @@ Designed to simplify everyday administration.
 
 ---
 
-### 📦 State Management & Server State
+### 📦 State Management
 
 - **Redux Toolkit** — Global application state management
 - **TanStack Query** — Server state management, caching, and asynchronous data fetching
@@ -214,6 +221,8 @@ Designed to simplify everyday administration.
 
 ## 📂 Project Structure
 
+The project follows a feature-oriented structure with a clear separation of pages, reusable components, state management, API communication, and shared utilities.
+
 ```text
 src/
 ├── assets/
@@ -229,18 +238,6 @@ src/
 ```
 
 ---
-
-## 🔗 URL Search Params
-
-The application keeps search filters, sorting, and pagination synchronized with the URL, allowing users to:
-
-- 🔗 Share filtered pages via URL
-- ↩️ Preserve state after page refresh
-- ⬅️ Use browser back and forward navigation seamlessly
-- 📄 Navigate directly to specific filtered views
-
----
-
 
 ## ⚙️ Environment Variables
 
@@ -266,7 +263,7 @@ Update the values if required.
 
 ```bash
 git clone https://github.com/ivannashchokalo/pet-shop-admin.git
-cd animal-admin-panel
+cd pet-shop-admin
 ```
 
 ### 2. Install dependencies
@@ -335,6 +332,26 @@ Use the following credentials to sign in to the Admin Panel:
 ---
 
 
+## 🔗 Related Repositories
+
+- 🌐 **Client App**  
+  Customer-facing web application where users can browse animals, manage favorites, and submit reservation requests.  
+  🔗 https://github.com/ivannashchokalo/pet-shop-client
+
+- ⚙️ **Backend API**  
+  Backend service responsible for authentication, business logic, database operations, image uploads, and REST endpoints.  
+  🔗 https://github.com/ivannashchokalo/pet-shop-api
+
+---
+
+> ⚠️ **Important**
+>
+> The Client and Admin Panel share the same authentication cookies.
+> When testing both applications at the same time, use different browser windows (Incognito or another browser) to avoid cookie conflicts.
+
+---
+
+
 ## 🔮 Future Improvements
 
 - 👥 Role-based access control
@@ -351,3 +368,10 @@ Junior Full-Stack Developer
 
 - 💼 LinkedIn: https://linkedin.com/in/ivannashchokalo
 - 🌐 GitHub: https://github.com/ivannashchokalo
+
+
+---
+
+## 📄 License
+
+This project was created for educational and portfolio purposes.
