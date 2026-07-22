@@ -1,29 +1,17 @@
-import { useGetAnimalsQuery } from "../../services/animalsApi";
 import { AgCharts } from "ag-charts-react";
 import type { AgChartOptions } from "ag-charts-community";
+import { useGetStatisticsQuery } from "../../services/statisticsApi";
 import styles from "./AnimalsChart.module.scss";
 
 export default function AnimalsPieChart() {
-  const { data: animals } = useGetAnimalsQuery();
+  const { data: statistics } = useGetStatisticsQuery();
 
-  const availableAnimals =
-    animals?.animals.filter((animal) => animal.status === "available") ?? [];
+  const availableAnimals = statistics?.animalsAvailableCount ?? 0;
 
-  const dogCount = availableAnimals.filter(
-    (animal) => animal.type === "dog",
-  ).length;
-
-  const catCount = availableAnimals.filter(
-    (animal) => animal.type === "cat",
-  ).length;
-
-  const birdCount = availableAnimals.filter(
-    (animal) => animal.type === "bird",
-  ).length;
-
-  const rodentCount = availableAnimals.filter(
-    (animal) => animal.type === "rodent",
-  ).length;
+  const dogCount = statistics?.availableDogsCount ?? 0;
+  const catCount = statistics?.availableCatsCount ?? 0;
+  const birdCount = statistics?.availableBirdsCount ?? 0;
+  const rodentCount = statistics?.availableRodentsCount ?? 0;
 
   const data = [
     { type: "Dog", count: dogCount },
@@ -52,7 +40,7 @@ export default function AnimalsPieChart() {
     <div>
       <ul className={styles.list}>
         <li className={styles.listItem}>
-          Available animals:<span>{availableAnimals.length}</span>
+          Available animals:<span>{availableAnimals}</span>
         </li>
 
         <li className={styles.listItem}>

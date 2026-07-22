@@ -1,21 +1,15 @@
-import { useGetAnimalsQuery } from "../../services/animalsApi";
 import { AgCharts } from "ag-charts-react";
 import type { AgChartOptions } from "ag-charts-community";
+import { useGetStatisticsQuery } from "../../services/statisticsApi";
 import styles from "./AnimalsChart.module.scss";
 
 export default function AnimalsStatusDonutChart() {
-  const { data } = useGetAnimalsQuery();
-  const animals = data?.animals ?? [];
+  const { data: statistics } = useGetStatisticsQuery();
 
-  const availableCount = animals.filter(
-    (animal) => animal.status === "available",
-  ).length;
+  const availableCount = statistics?.animalsAvailableCount ?? 0;
+  const reservedCount = statistics?.reservedCount ?? 0;
+  const soldCount = statistics?.soldCount ?? 0;
 
-  const reservedCount = animals.filter(
-    (animal) => animal.status === "reserved",
-  ).length;
-
-  const soldCount = animals.filter((animal) => animal.status === "sold").length;
   const totalAnimals = availableCount + reservedCount + soldCount;
 
   const chartData = [
@@ -71,6 +65,7 @@ export default function AnimalsStatusDonutChart() {
           Sold:<span>{soldCount}</span>
         </li>
       </ul>
+
       <AgCharts options={options} />
     </div>
   );
