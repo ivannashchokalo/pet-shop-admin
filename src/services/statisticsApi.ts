@@ -1,17 +1,12 @@
 import { baseApi } from "./baseApi";
 
 interface StatisticsResponse {
-  dogsCount: number;
-  catsCount: number;
-  birdsCount: number;
-  rodentsCount: number;
   animalsAvailableCount: number;
   happyOwnersCount: number;
   availableDogsCount: number;
   availableCatsCount: number;
   availableBirdsCount: number;
   availableRodentsCount: number;
-
   reservedCount: number;
   soldCount: number;
 }
